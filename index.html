@@ -397,10 +397,84 @@
             </div>
         </div>
 
+        <!-- Profile Section -->
+        <div id="profileSection" class="hidden max-w-4xl mx-auto px-4 py-10">
+            <div class="bg-white p-8 rounded-3xl shadow-xl">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-3xl font-heading text-primary">Your Profile</h2>
+                    <button onclick="showSection('rooms')" class="bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition">
+                        <i class="fas fa-arrow-left mr-2"></i>Back to Dashboard
+                    </button>
+                </div>
+                <div class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="p-6 bg-light rounded-2xl">
+                            <h3 class="text-xl font-bold text-primary mb-4">Personal Info</h3>
+                            <div class="space-y-3">
+                                <p><strong>Name:</strong> <span id="profileName">-</span></p>
+                                <p><strong>Email:</strong> <span id="profileEmail">-</span></p>
+                                <p><strong>Phone:</strong> <span id="profilePhone">-</span></p>
+                                <p><strong>Username:</strong> <span id="profileUsername">-</span></p>
+                                <p><strong>Joined Date:</strong> <span id="profileJoinDate">-</span></p>
+                            </div>
+                        </div>
+                        <div class="p-6 bg-light rounded-2xl">
+                            <h3 class="text-xl font-bold text-primary mb-4">Account Stats</h3>
+                            <div class="space-y-3">
+                                <p><strong>Wallet Balance:</strong> ₹<span id="profileBalance">0</span></p>
+                                <p><strong>Total Games Played:</strong> <span id="profileGames">0</span></p>
+                                <p><strong>Total Winnings:</strong> ₹<span id="profileWinnings">0</span></p>
+                                <p><strong>Withdrawals:</strong> ₹<span id="profileWithdrawals">0</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- History Section -->
+        <div id="historySection" class="hidden max-w-6xl mx-auto px-4 py-10">
+            <div class="bg-white p-8 rounded-3xl shadow-xl">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-3xl font-heading text-primary">Your History</h2>
+                    <button onclick="showSection('rooms')" class="bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition">
+                        <i class="fas fa-arrow-left mr-2"></i>Back to Dashboard
+                    </button>
+                </div>
+                <div class="space-y-6">
+                    <div class="p-6 bg-light rounded-2xl">
+                        <h3 class="text-xl font-bold text-primary mb-4">Recent Transactions</h3>
+                        <div id="transactionHistory" class="space-y-3">
+                            <p class="text-center text-gray-500">No transactions yet</p>
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="p-6 bg-light rounded-2xl">
+                            <h3 class="text-xl font-bold text-primary mb-4">Game History</h3>
+                            <div id="gameHistory" class="space-y-3">
+                                <p class="text-center text-gray-500">No games played yet</p>
+                            </div>
+                        </div>
+                        <div class="p-6 bg-light rounded-2xl">
+                            <h3 class="text-xl font-bold text-primary mb-4">Withdrawal History</h3>
+                            <div id="withdrawalHistory" class="space-y-3">
+                                <p class="text-center text-gray-500">No withdrawals yet</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Admin Panel -->
         <div id="adminSection" class="hidden max-w-6xl mx-auto px-4 py-16">
             <div class="bg-white rounded-3xl shadow-xl p-8">
-                <h2 class="text-3xl font-heading text-primary mb-6 text-center">Admin Panel</h2>
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-3xl font-heading text-primary text-center">Admin Panel</h2>
+                    <button onclick="showSection('rooms')" class="bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition">
+                        <i class="fas fa-arrow-left mr-2"></i>Back to Dashboard
+                    </button>
+                </div>
                 <div class="mb-6 p-4 bg-light rounded-xl text-center">
                     <p class="text-xl font-bold">Total Registered Users: <span id="totalUsers">0</span></p>
                 </div>
@@ -424,10 +498,15 @@
             </div>
         </div>
 
-        <!-- DEPOSIT SECTION (ADDED) -->
+        <!-- DEPOSIT SECTION -->
         <div id="depositSection" class="hidden max-w-4xl mx-auto px-4 py-10">
             <div class="bg-white p-8 rounded-3xl shadow-xl">
-                <h2 class="text-3xl font-heading text-primary text-center mb-6">Deposit Money</h2>
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-3xl font-heading text-primary text-center">Deposit Money</h2>
+                    <button onclick="showSection('rooms')" class="bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition">
+                        <i class="fas fa-arrow-left mr-2"></i>Back to Dashboard
+                    </button>
+                </div>
                 <div class="mb-6 p-4 bg-yellow-50 rounded-xl border border-yellow-200">
                     <p class="text-center font-bold text-lg">Send payment to: <span class="text-primary">millnerkaptan01@fam</span></p>
                     <p class="text-center text-sm mt-2">After payment, send screenshot to confirm</p>
@@ -439,10 +518,15 @@
             </div>
         </div>
 
-        <!-- WITHDRAW SECTION (ADDED) -->
+        <!-- WITHDRAW SECTION -->
         <div id="withdrawSection" class="hidden max-w-4xl mx-auto px-4 py-10">
             <div class="bg-white p-8 rounded-3xl shadow-xl">
-                <h2 class="text-3xl font-heading text-primary text-center mb-6">Withdraw Money</h2>
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-3xl font-heading text-primary text-center">Withdraw Money</h2>
+                    <button onclick="showSection('rooms')" class="bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition">
+                        <i class="fas fa-arrow-left mr-2"></i>Back to Dashboard
+                    </button>
+                </div>
                 <input type="number" id="withdrawAmount" placeholder="Enter Amount (min ₹100)" class="w-full p-4 border-2 border-secondary rounded-xl mb-4" min="100">
                 <select id="withdrawMethod" class="w-full p-4 border-2 border-secondary rounded-xl mb-4" onchange="toggleWithdrawFields()">
                     <option value="upi">UPI</option>
@@ -572,7 +656,10 @@
                 balance: 0, 
                 lastSeen: 'just now', 
                 withdrawals: [],
-                registeredAt: new Date().toISOString()
+                registeredAt: new Date().toISOString(),
+                gamesPlayed: 0,
+                totalWinnings: 0,
+                transactionHistory: []
             };
             users.push(user);
             const saved = await saveUsersToCloud();
@@ -649,9 +736,79 @@
         function showSection(section) {
             document.querySelectorAll('#dashboard > div').forEach(div => div.classList.add('hidden'));
             document.getElementById(section + 'Section').classList.remove('hidden');
-            if (section === 'admin' && isAdmin) { updateTotalUsers(); loadAdminUsers(); }
+            
+            if (section === 'admin' && isAdmin) { 
+                updateTotalUsers(); 
+                loadAdminUsers(); 
+            }
+            if (section === 'profile') {
+                loadProfileData();
+            }
+            if (section === 'history') {
+                loadHistoryData();
+            }
             if (section === 'withdraw') toggleWithdrawFields();
             toggleMenu();
+        }
+
+        // Load Profile Data
+        function loadProfileData() {
+            if (currentUser) {
+                document.getElementById('profileName').textContent = currentUser.name;
+                document.getElementById('profileEmail').textContent = currentUser.email;
+                document.getElementById('profilePhone').textContent = currentUser.phone;
+                document.getElementById('profileUsername').textContent = currentUser.username;
+                document.getElementById('profileJoinDate').textContent = currentUser.joinDate;
+                document.getElementById('profileBalance').textContent = currentUser.balance;
+                document.getElementById('profileGames').textContent = currentUser.gamesPlayed || 0;
+                document.getElementById('profileWinnings').textContent = currentUser.totalWinnings || 0;
+                document.getElementById('profileWithdrawals').textContent = currentUser.withdrawals ? currentUser.withdrawals.reduce((sum, w) => sum + w.amount, 0) : 0;
+            }
+        }
+
+        // Load History Data
+        function loadHistoryData() {
+            const transactionHistory = document.getElementById('transactionHistory');
+            const gameHistory = document.getElementById('gameHistory');
+            const withdrawalHistory = document.getElementById('withdrawalHistory');
+            
+            if (currentUser) {
+                // Transaction History
+                if (currentUser.transactionHistory && currentUser.transactionHistory.length > 0) {
+                    transactionHistory.innerHTML = currentUser.transactionHistory.map(transaction => 
+                        `<div class="p-3 bg-white rounded-lg border">
+                            <p><strong>${transaction.type}</strong> - ₹${transaction.amount}</p>
+                            <p class="text-sm text-gray-600">${transaction.date}</p>
+                        </div>`
+                    ).join('');
+                } else {
+                    transactionHistory.innerHTML = '<p class="text-center text-gray-500">No transactions yet</p>';
+                }
+
+                // Game History
+                if (currentUser.gamesPlayed > 0) {
+                    gameHistory.innerHTML = `
+                        <div class="p-3 bg-white rounded-lg border">
+                            <p><strong>Total Games:</strong> ${currentUser.gamesPlayed}</p>
+                            <p><strong>Total Winnings:</strong> ₹${currentUser.totalWinnings || 0}</p>
+                        </div>
+                    `;
+                } else {
+                    gameHistory.innerHTML = '<p class="text-center text-gray-500">No games played yet</p>';
+                }
+
+                // Withdrawal History
+                if (currentUser.withdrawals && currentUser.withdrawals.length > 0) {
+                    withdrawalHistory.innerHTML = currentUser.withdrawals.map(withdrawal => 
+                        `<div class="p-3 bg-white rounded-lg border">
+                            <p><strong>Withdrawal:</strong> ₹${withdrawal.amount}</p>
+                            <p class="text-sm text-gray-600">${withdrawal.date} - ${withdrawal.status || 'Pending'}</p>
+                        </div>`
+                    ).join('');
+                } else {
+                    withdrawalHistory.innerHTML = '<p class="text-center text-gray-500">No withdrawals yet</p>';
+                }
+            }
         }
 
         async function joinRoom(amount, mode) {
@@ -659,10 +816,19 @@
             if (currentUser.balance < amount) { alert('Insufficient balance!'); showSection('deposit'); return; }
             if (confirm(`Join ₹${amount} ${mode} room?`)) {
                 currentUser.balance -= amount;
+                currentUser.gamesPlayed = (currentUser.gamesPlayed || 0) + 1;
+                
+                // Add transaction to history
+                if (!currentUser.transactionHistory) currentUser.transactionHistory = [];
+                currentUser.transactionHistory.unshift({
+                    type: 'Game Entry Fee',
+                    amount: amount,
+                    date: new Date().toLocaleString()
+                });
+                
                 const win = amount * 1.8;
                 alert(`Joined ${mode} room! Win up to ₹${win}`);
                 await updateBalance();
-                // YAHAN WHATSAPP LINK CHANGE KARDI
                 window.open('https://wa.me/12264939021', '_blank');
             }
         }
@@ -672,9 +838,18 @@
             if (currentUser.balance < amount) { alert('Insufficient balance!'); showSection('deposit'); return; }
             if (confirm(`Join Erangel ₹${amount} room? (₹${amount/2} per kill)`)) {
                 currentUser.balance -= amount;
+                currentUser.gamesPlayed = (currentUser.gamesPlayed || 0) + 1;
+                
+                // Add transaction to history
+                if (!currentUser.transactionHistory) currentUser.transactionHistory = [];
+                currentUser.transactionHistory.unshift({
+                    type: 'Erangel Entry Fee',
+                    amount: amount,
+                    date: new Date().toLocaleString()
+                });
+                
                 alert(`Joined Erangel! ₹${amount/2} per kill.`);
                 await updateBalance();
-                // YAHAN WHATSAPP LINK CHANGE KARDI
                 window.open('https://wa.me/12264939021', '_blank');
             }
         }
@@ -734,6 +909,15 @@
             const user = users.find(u => u.email.toLowerCase() === email.toLowerCase());
             if (!user) return alert('User not found! Check email spelling.');
             user.balance += amt;
+            
+            // Add transaction to user history
+            if (!user.transactionHistory) user.transactionHistory = [];
+            user.transactionHistory.unshift({
+                type: 'Admin Added Funds',
+                amount: amt,
+                date: new Date().toLocaleString()
+            });
+            
             await saveUsersToCloud();
             alert(`₹${amt} added to ${user.username}. New balance: ₹${user.balance}`);
             loadAdminUsers();
@@ -747,6 +931,15 @@
             if (!user) return alert('User not found! Check email spelling.');
             if (user.balance < amt) return alert(`Insufficient balance. User has only ₹${user.balance}`);
             user.balance -= amt;
+            
+            // Add transaction to user history
+            if (!user.transactionHistory) user.transactionHistory = [];
+            user.transactionHistory.unshift({
+                type: 'Admin Deducted Funds',
+                amount: amt,
+                date: new Date().toLocaleString()
+            });
+            
             await saveUsersToCloud();
             alert(`₹${amt} deducted from ${user.username}. New balance: ₹${user.balance}`);
             loadAdminUsers();
@@ -764,7 +957,6 @@
             const amt = document.getElementById('depositAmount').value;
             if (!amt || amt < 10) return alert('Enter amount ≥ ₹10');
             const msg = `DEPOSIT REQUEST\nUser: ${currentUser.username}\nEmail: ${currentUser.email}\nAmount: ₹${amt}\nPayment Method: millnerkaptan01@fam`;
-            // YAHAN WHATSAPP LINK CHANGE KARDI
             window.open(`https://wa.me/12264939021?text=${encodeURIComponent(msg)}`, '_blank');
         }
 
@@ -786,7 +978,6 @@
                 details = `Name: ${name}\nAccount: ${acc}\nIFSC: ${ifsc}`;
             }
             const msg = `WITHDRAW REQUEST\nUser: ${currentUser.username}\nEmail: ${currentUser.email}\nAmount: ₹${amt}\n${details}`;
-            // YAHAN WHATSAPP LINK CHANGE KARDI
             window.open(`https://wa.me/12264939021?text=${encodeURIComponent(msg)}`, '_blank');
         }
     </script>
