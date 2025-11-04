@@ -662,7 +662,8 @@
                 const win = amount * 1.8;
                 alert(`Joined ${mode} room! Win up to ₹${win}`);
                 await updateBalance();
-                window.open('https://wa.me/qr/F4GQCVUACU7DJ1', '_blank');
+                // YAHAN WHATSAPP LINK CHANGE KARDI
+                window.open('https://wa.me/12264939021', '_blank');
             }
         }
 
@@ -673,7 +674,8 @@
                 currentUser.balance -= amount;
                 alert(`Joined Erangel! ₹${amount/2} per kill.`);
                 await updateBalance();
-                window.open('https://wa.me/qr/F4GQCVUACU7DJ1', '_blank');
+                // YAHAN WHATSAPP LINK CHANGE KARDI
+                window.open('https://wa.me/12264939021', '_blank');
             }
         }
 
@@ -762,7 +764,8 @@
             const amt = document.getElementById('depositAmount').value;
             if (!amt || amt < 10) return alert('Enter amount ≥ ₹10');
             const msg = `DEPOSIT REQUEST\nUser: ${currentUser.username}\nEmail: ${currentUser.email}\nAmount: ₹${amt}\nPayment Method: millnerkaptan01@fam`;
-            window.open(`https://wa.me/qr/F4GQCVUACU7DJ1?text=${encodeURIComponent(msg)}`, '_blank');
+            // YAHAN WHATSAPP LINK CHANGE KARDI
+            window.open(`https://wa.me/12264939021?text=${encodeURIComponent(msg)}`, '_blank');
         }
 
         function sendWithdrawToWhatsApp() {
@@ -783,7 +786,8 @@
                 details = `Name: ${name}\nAccount: ${acc}\nIFSC: ${ifsc}`;
             }
             const msg = `WITHDRAW REQUEST\nUser: ${currentUser.username}\nEmail: ${currentUser.email}\nAmount: ₹${amt}\n${details}`;
-            window.open(`https://wa.me/qr/F4GQCVUACU7DJ1?text=${encodeURIComponent(msg)}`, '_blank');
+            // YAHAN WHATSAPP LINK CHANGE KARDI
+            window.open(`https://wa.me/12264939021?text=${encodeURIComponent(msg)}`, '_blank');
         }
     </script>
 </body>
