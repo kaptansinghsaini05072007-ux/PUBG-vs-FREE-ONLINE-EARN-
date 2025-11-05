@@ -580,7 +580,7 @@
                         <h3 class="text-xl font-bold text-primary mb-4">💰 How it Works</h3>
                         <div class="space-y-3 text-sm">
                             <p>✅ <strong>2% Commission</strong> on every direct member's deposit</p>
-                            <p>✅ Share your unique referral code</p>
+                            <p>✅ Share your unique referral link</p>
                             <p>✅ Earn when your friends deposit money</p>
                             <p>✅ Withdraw referral earnings anytime</p>
                         </div>
@@ -588,7 +588,7 @@
                 </div>
 
                 <div class="bg-yellow-50 border border-yellow-200 rounded-2xl p-6 mb-6">
-                    <h3 class="text-xl font-bold text-primary mb-4">📤 Your Referral Code</h3>
+                    <h3 class="text-xl font-bold text-primary mb-4">📤 Your Referral Link</h3>
                     <div class="text-center mb-4">
                         <div class="bg-white p-4 rounded-xl border-2 border-primary inline-block">
                             <p class="text-2xl font-bold text-primary" id="referralCodeDisplay">Loading...</p>
@@ -596,18 +596,18 @@
                         </div>
                     </div>
                     <div class="flex gap-2 mb-3">
-                        <input type="text" id="referralLink" class="flex-1 p-3 border rounded-xl bg-white text-center" readonly>
+                        <input type="text" id="referralLink" class="flex-1 p-3 border rounded-xl bg-white text-center font-bold" readonly>
                         <button onclick="copyReferralLink()" class="bg-primary text-white px-4 py-3 rounded-xl hover:bg-secondary transition">
                             <i class="fas fa-copy"></i>
                         </button>
                     </div>
-                    <p class="text-sm text-gray-600 text-center">Share this code with friends! When they sign up using your code, you get 2% commission on their deposits!</p>
+                    <p class="text-sm text-gray-600 text-center">Share this link with friends! When they sign up using your link, you get 2% commission on their deposits!</p>
                 </div>
 
                 <div class="bg-light p-6 rounded-2xl">
-                    <h3 class="text-xl font-bold text-primary mb-4">👥 Your Referrals</h3>
+                    <h3 class="text-xl font-bold text-primary mb-4">👥 Your Referrals & Commission History</h3>
                     <div id="referralList" class="space-y-3">
-                        <p class="text-center text-gray-500">No referrals yet. Share your code to start earning!</p>
+                        <p class="text-center text-gray-500">No referrals yet. Share your link to start earning!</p>
                     </div>
                 </div>
             </div>
@@ -622,10 +622,31 @@
                         <i class="fas fa-arrow-left mr-2"></i>Back to Dashboard
                     </button>
                 </div>
+                
+                <!-- UPI ID Display -->
                 <div class="mb-6 p-4 bg-yellow-50 rounded-xl border border-yellow-200">
                     <p class="text-center font-bold text-lg">Send payment to: <span class="text-primary">millnerkaptan01@fam</span></p>
                     <p class="text-center text-sm mt-2">After payment, send screenshot to confirm</p>
                 </div>
+
+                <!-- QR Code Section -->
+                <div class="mb-6">
+                    <h3 class="text-xl font-bold text-primary mb-4 text-center">Scan QR Code to Pay</h3>
+                    
+                    <!-- Current QR Code -->
+                    <div id="currentQR" class="text-center mb-4">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=UPI_ID_1" alt="QR Code 1" class="mx-auto border-4 border-primary rounded-xl w-48 h-48">
+                        <p class="text-sm text-gray-600 mt-2">QR Code 1</p>
+                    </div>
+
+                    <!-- QR Change Button -->
+                    <div class="text-center">
+                        <button onclick="changeQRCode()" class="bg-secondary text-white px-6 py-2 rounded-full hover:bg-primary transition">
+                            <i class="fas fa-sync-alt mr-2"></i>Change QR Code
+                        </button>
+                    </div>
+                </div>
+
                 <input type="number" id="depositAmount" placeholder="Enter Amount (min ₹10)" class="w-full p-4 border-2 border-secondary rounded-xl mb-4" min="10">
                 <button onclick="sendDepositToWhatsApp()" class="w-full bg-green-500 text-white py-4 rounded-xl font-bold text-lg hover:opacity-90 transition">
                     Send Request on WhatsApp
@@ -673,6 +694,20 @@
                 <div class="mb-6 p-4 bg-light rounded-xl text-center">
                     <p class="text-xl font-bold">Total Registered Users: <span id="totalUsers">0</span></p>
                 </div>
+                
+                <!-- User Stats Update Section -->
+                <div class="mb-6 bg-light p-6 rounded-2xl">
+                    <h3 class="text-xl font-bold mb-4">Update User Stats</h3>
+                    <div class="grid md:grid-cols-3 gap-4 mb-4">
+                        <input type="email" id="adminUserEmailStats" placeholder="User Email" class="p-3 border rounded-xl">
+                        <input type="number" id="adminUserWinnings" placeholder="Total Winnings" class="p-3 border rounded-xl">
+                        <input type="number" id="adminUserWithdrawals" placeholder="Total Withdrawals" class="p-3 border rounded-xl">
+                    </div>
+                    <button onclick="updateUserStats()" class="bg-purple-500 text-white px-6 py-3 rounded-xl font-bold hover:bg-purple-600 transition">
+                        Update User Stats
+                    </button>
+                </div>
+
                 <div class="mb-6">
                     <h3 class="text-xl font-bold mb-4">Add Funds to User</h3>
                     <div class="flex gap-4 mb-4">
@@ -719,6 +754,14 @@
         let currentUser = null;
         let users = [];
         let isAdmin = false;
+        let currentQR = 1;
+
+        // QR Codes Data
+        const qrCodes = [
+            { src: "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=UPI_ID_1", label: "QR Code 1" },
+            { src: "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=UPI_ID_2", label: "QR Code 2" },
+            { src: "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=UPI_ID_3", label: "QR Code 3" }
+        ];
 
         // Live Stats Data
         const transactions = [
@@ -765,6 +808,16 @@
             ).join('');
         }
 
+        // QR Code Functions
+        function changeQRCode() {
+            currentQR = (currentQR % 3) + 1;
+            const qrContainer = document.getElementById('currentQR');
+            qrContainer.innerHTML = `
+                <img src="${qrCodes[currentQR-1].src}" alt="${qrCodes[currentQR-1].label}" class="mx-auto border-4 border-primary rounded-xl w-48 h-48">
+                <p class="text-sm text-gray-600 mt-2">${qrCodes[currentQR-1].label}</p>
+            `;
+        }
+
         // FIXED REFERRAL SYSTEM
         function generateReferralCode() {
             const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -784,13 +837,14 @@
                 saveUsersToCloud();
             }
 
-            // FIXED: Simple referral message without domain issues
-            const referralMessage = `Join Free Fire & PUBG Tournament! Use my referral code: ${currentUser.referralCode} to get ₹5 bonus!`;
+            // FIXED: Clickable referral link
+            const websiteURL = window.location.origin;
+            const referralLink = `${websiteURL}?ref=${currentUser.referralCode}`;
 
             // Update referral UI
             document.getElementById('referralCode').textContent = currentUser.referralCode;
             document.getElementById('referralCodeDisplay').textContent = currentUser.referralCode;
-            document.getElementById('referralLink').value = referralMessage;
+            document.getElementById('referralLink').value = referralLink;
             
             // Calculate referral stats
             const referrals = users.filter(u => u.referredBy === currentUser.referralCode);
@@ -801,23 +855,36 @@
             document.getElementById('referralEarnings').textContent = referralEarnings;
             document.getElementById('pendingCommission').textContent = pendingCommission;
 
-            // Update referral list
+            // Update referral list with commission details
             const referralList = document.getElementById('referralList');
             if (referrals.length > 0) {
-                referralList.innerHTML = referrals.map(ref => 
-                    `<div class="flex justify-between items-center p-3 bg-white rounded-lg border">
-                        <div>
-                            <p class="font-bold">${ref.username}</p>
-                            <p class="text-sm text-gray-600">Joined: ${ref.joinDate}</p>
+                referralList.innerHTML = referrals.map(ref => {
+                    const commissionHistory = ref.commissionHistory || [];
+                    return `
+                        <div class="p-4 bg-white rounded-lg border">
+                            <div class="flex justify-between items-center mb-2">
+                                <div>
+                                    <p class="font-bold">${ref.username}</p>
+                                    <p class="text-sm text-gray-600">Joined: ${ref.joinDate}</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-green-600 font-bold">+₹${ref.referralBonus || 0}</p>
+                                    <p class="text-xs text-gray-600">Total Commission</p>
+                                </div>
+                            </div>
+                            ${commissionHistory.length > 0 ? `
+                                <div class="mt-2 pt-2 border-t">
+                                    <p class="text-sm font-bold text-primary">Commission History:</p>
+                                    ${commissionHistory.map(comm => `
+                                        <p class="text-xs text-gray-600">₹${comm.amount} from deposit - ${comm.date}</p>
+                                    `).join('')}
+                                </div>
+                            ` : ''}
                         </div>
-                        <div class="text-right">
-                            <p class="text-green-600 font-bold">+₹${ref.referralBonus || 0}</p>
-                            <p class="text-xs text-gray-600">Commission earned</p>
-                        </div>
-                    </div>`
-                ).join('');
+                    `;
+                }).join('');
             } else {
-                referralList.innerHTML = '<p class="text-center text-gray-500">No referrals yet. Share your code to start earning!</p>';
+                referralList.innerHTML = '<p class="text-center text-gray-500">No referrals yet. Share your link to start earning!</p>';
             }
         }
 
@@ -825,7 +892,7 @@
             const linkInput = document.getElementById('referralLink');
             linkInput.select();
             document.execCommand('copy');
-            alert('Referral code copied! Share this with your friends.');
+            alert('Referral link copied! Share this with your friends.');
         }
 
         // Check for referral parameter in URL
@@ -959,7 +1026,10 @@
                 referralCode: null,
                 referralEarnings: 0,
                 totalReferrals: 0,
-                totalDeposits: 0
+                totalDeposits: 0,
+                totalWinnings: 0,
+                totalWithdrawals: 0,
+                commissionHistory: []
             };
             users.push(user);
             
@@ -970,6 +1040,16 @@
                     referrer.referralEarnings = (referrer.referralEarnings || 0) + 5;
                     referrer.totalReferrals = (referrer.totalReferrals || 0) + 1;
                     referrer.balance += 5;
+                    
+                    // Add to commission history
+                    if (!referrer.commissionHistory) referrer.commissionHistory = [];
+                    referrer.commissionHistory.push({
+                        amount: 5,
+                        date: new Date().toLocaleString(),
+                        from: user.username,
+                        type: 'Signup Bonus'
+                    });
+                    
                     alert(`🎉 You received ₹5 referral bonus!`);
                 }
             }
@@ -988,6 +1068,15 @@
                     referrer.referralEarnings = (referrer.referralEarnings || 0) + commission;
                     referrer.balance += commission;
                     
+                    // Add to commission history
+                    if (!referrer.commissionHistory) referrer.commissionHistory = [];
+                    referrer.commissionHistory.push({
+                        amount: commission,
+                        date: new Date().toLocaleString(),
+                        from: depositingUser.username,
+                        type: 'Deposit Commission'
+                    });
+                    
                     // Add transaction record
                     if (!referrer.transactionHistory) referrer.transactionHistory = [];
                     referrer.transactionHistory.unshift({
@@ -1001,6 +1090,29 @@
                     console.log(`₹${commission} referral commission added to ${referrer.username}`);
                 }
             }
+        }
+
+        // Admin function to update user stats
+        async function updateUserStats() {
+            const email = document.getElementById('adminUserEmailStats').value.trim().toLowerCase();
+            const winnings = parseFloat(document.getElementById('adminUserWinnings').value) || 0;
+            const withdrawals = parseFloat(document.getElementById('adminUserWithdrawals').value) || 0;
+
+            if (!email) return alert('Enter user email');
+
+            const user = users.find(u => u.email.toLowerCase() === email);
+            if (!user) return alert('User not found!');
+
+            user.totalWinnings = winnings;
+            user.totalWithdrawals = withdrawals;
+
+            await saveUsersToCloud();
+            alert(`Stats updated for ${user.username}\nWinnings: ₹${winnings}\nWithdrawals: ₹${withdrawals}`);
+            
+            // Clear fields
+            document.getElementById('adminUserEmailStats').value = '';
+            document.getElementById('adminUserWinnings').value = '';
+            document.getElementById('adminUserWithdrawals').value = '';
         }
 
         async function handleLogin(e) {
@@ -1127,7 +1239,7 @@
                 document.getElementById('profileBalance').textContent = currentUser.balance;
                 document.getElementById('profileGames').textContent = currentUser.gamesPlayed || 0;
                 document.getElementById('profileWinnings').textContent = currentUser.totalWinnings || 0;
-                document.getElementById('profileWithdrawals').textContent = currentUser.withdrawals ? currentUser.withdrawals.reduce((sum, w) => sum + w.amount, 0) : 0;
+                document.getElementById('profileWithdrawals').textContent = currentUser.totalWithdrawals || 0;
             }
         }
 
@@ -1196,6 +1308,7 @@
                 div.innerHTML = `
                     <p><strong>${user.username}</strong> (${user.email})</p>
                     <p>Phone: ${user.phone} | Balance: ₹${user.balance}</p>
+                    <p class="text-sm text-gray-600">Winnings: ₹${user.totalWinnings || 0} | Withdrawals: ₹${user.totalWithdrawals || 0}</p>
                     <p class="text-sm text-gray-600">Joined: ${user.joinDate}</p>
                     <div class="flex gap-2 mt-2">
                         <input type="number" placeholder="Amount" class="p-2 border rounded w-24" min="1">
