@@ -157,6 +157,26 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+        .vip-tier {
+            border: 3px solid transparent;
+            background-clip: padding-box;
+        }
+        .vip-tier-1 {
+            background: linear-gradient(45deg, #f0f0f0, #c0c0c0);
+        }
+        .vip-tier-2 {
+            background: linear-gradient(45deg, #ffd700, #daa520);
+        }
+        .vip-tier-3 {
+            background: linear-gradient(45deg, #e5e4e2, #b9f2ff);
+        }
+        .vip-active {
+            border-color: #4ECDC4;
+            box-shadow: 0 0 15px rgba(78, 205, 196, 0.5);
+        }
+        .blue-tick {
+            color: #1DA1F2;
+        }
     </style>
 </head>
 <body class="bg-light font-body text-dark min-h-screen overflow-x-hidden">
@@ -444,23 +464,26 @@
             <div class="bg-gradient-to-r from-purple-500 to-pink-500 text-white p-6 rounded-3xl shadow-xl">
                 <h2 class="text-2xl font-heading text-center mb-4">🎮 VIP Membership</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div class="bg-white bg-opacity-20 p-4 rounded-2xl text-center">
+                    <div class="vip-tier vip-tier-1 p-4 rounded-2xl text-center card-hover">
                         <h3 class="font-bold text-lg mb-2">VIP 1</h3>
-                        <p class="text-sm">Low Entry Fee</p>
-                        <p class="text-sm">5% Extra Bonus</p>
-                        <button class="mt-2 bg-white text-purple-600 px-4 py-1 rounded-full text-sm font-bold">Upgrade</button>
+                        <p class="text-sm">3% Extra Bonus on Deposits</p>
+                        <p class="text-sm">Monthly: ₹199</p>
+                        <p class="text-sm">Yearly: ₹2149</p>
+                        <button onclick="upgradeVIP(1)" class="mt-2 bg-white text-purple-600 px-4 py-1 rounded-full text-sm font-bold">Upgrade</button>
                     </div>
-                    <div class="bg-white bg-opacity-20 p-4 rounded-2xl text-center">
+                    <div class="vip-tier vip-tier-2 p-4 rounded-2xl text-center card-hover">
                         <h3 class="font-bold text-lg mb-2">VIP 2</h3>
-                        <p class="text-sm">Medium Entry Fee</p>
-                        <p class="text-sm">10% Extra Bonus</p>
-                        <button class="mt-2 bg-white text-purple-600 px-4 py-1 rounded-full text-sm font-bold">Upgrade</button>
+                        <p class="text-sm">5% Extra Bonus on Deposits</p>
+                        <p class="text-sm">Monthly: ₹499</p>
+                        <p class="text-sm">Yearly: ₹5150</p>
+                        <button onclick="upgradeVIP(2)" class="mt-2 bg-white text-purple-600 px-4 py-1 rounded-full text-sm font-bold">Upgrade</button>
                     </div>
-                    <div class="bg-white bg-opacity-20 p-4 rounded-2xl text-center">
+                    <div class="vip-tier vip-tier-3 p-4 rounded-2xl text-center card-hover">
                         <h3 class="font-bold text-lg mb-2">VIP 3</h3>
-                        <p class="text-sm">High Entry Fee</p>
-                        <p class="text-sm">15% Extra Bonus</p>
-                        <button class="mt-2 bg-white text-purple-600 px-4 py-1 rounded-full text-sm font-bold">Upgrade</button>
+                        <p class="text-sm">10% Extra Bonus on Deposits</p>
+                        <p class="text-sm">Monthly: ₹900</p>
+                        <p class="text-sm">Yearly: ₹11050</p>
+                        <button onclick="upgradeVIP(3)" class="mt-2 bg-white text-purple-600 px-4 py-1 rounded-full text-sm font-bold">Upgrade</button>
                     </div>
                 </div>
             </div>
@@ -594,6 +617,86 @@
                         <p class="text-xs text-gray-600 dark:text-gray-400">VIP Room</p>
                         <p class="text-md font-bold text-green-600 mt-1">Win ₹1,800</p>
                         <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">1v1 | 4v4</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ludo Game Rooms -->
+            <div class="mt-12">
+                <h2 class="text-3xl font-heading text-center mb-6 text-primary dark:text-white">🎲 Ludo Game Rooms</h2>
+                <p class="text-center text-gray-600 dark:text-gray-400 mb-6">Win 90% of pot | Only 10% platform fee</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="room-card bg-gradient-to-br from-green-500 to-blue-500 text-white p-4 rounded-2xl shadow-lg card-hover cursor-pointer" onclick="joinLudoRoom(50, 90, 1)">
+                        <div class="text-center">
+                            <i class="fas fa-dice text-4xl mb-2"></i>
+                            <p class="text-2xl font-bold">₹50</p>
+                            <p class="text-xs">Ticket</p>
+                            <p class="text-md font-bold mt-1">Win ₹90</p>
+                            <p class="text-xs mt-1">Travel 1</p>
+                        </div>
+                    </div>
+                    <div class="room-card bg-gradient-to-br from-green-500 to-blue-500 text-white p-4 rounded-2xl shadow-lg card-hover cursor-pointer" onclick="joinLudoRoom(100, 180, 2)">
+                        <div class="text-center">
+                            <i class="fas fa-dice text-4xl mb-2"></i>
+                            <p class="text-2xl font-bold">₹100</p>
+                            <p class="text-xs">Ticket</p>
+                            <p class="text-md font-bold mt-1">Win ₹180</p>
+                            <p class="text-xs mt-1">Travel 2</p>
+                        </div>
+                    </div>
+                    <div class="room-card bg-gradient-to-br from-green-500 to-blue-500 text-white p-4 rounded-2xl shadow-lg card-hover cursor-pointer" onclick="joinLudoRoom(200, 360, 3)">
+                        <div class="text-center">
+                            <i class="fas fa-dice text-4xl mb-2"></i>
+                            <p class="text-2xl font-bold">₹200</p>
+                            <p class="text-xs">Ticket</p>
+                            <p class="text-md font-bold mt-1">Win ₹360</p>
+                            <p class="text-xs mt-1">Travel 3</p>
+                        </div>
+                    </div>
+                    <div class="room-card bg-gradient-to-br from-green-500 to-blue-500 text-white p-4 rounded-2xl shadow-lg card-hover cursor-pointer" onclick="joinLudoRoom(500, 900, 4)">
+                        <div class="text-center">
+                            <i class="fas fa-dice text-4xl mb-2"></i>
+                            <p class="text-2xl font-bold">₹500</p>
+                            <p class="text-xs">Ticket</p>
+                            <p class="text-md font-bold mt-1">Win ₹900</p>
+                            <p class="text-xs mt-1">Travel 4</p>
+                        </div>
+                    </div>
+                    <div class="room-card bg-gradient-to-br from-green-500 to-blue-500 text-white p-4 rounded-2xl shadow-lg card-hover cursor-pointer" onclick="joinLudoRoom(1000, 1800, 5)">
+                        <div class="text-center">
+                            <i class="fas fa-dice text-4xl mb-2"></i>
+                            <p class="text-2xl font-bold">₹1000</p>
+                            <p class="text-xs">Ticket</p>
+                            <p class="text-md font-bold mt-1">Win ₹1800</p>
+                            <p class="text-xs mt-1">Travel 5</p>
+                        </div>
+                    </div>
+                    <div class="room-card bg-gradient-to-br from-green-500 to-blue-500 text-white p-4 rounded-2xl shadow-lg card-hover cursor-pointer" onclick="joinLudoRoom(2000, 3600, 6)">
+                        <div class="text-center">
+                            <i class="fas fa-dice text-4xl mb-2"></i>
+                            <p class="text-2xl font-bold">₹2000</p>
+                            <p class="text-xs">Ticket</p>
+                            <p class="text-md font-bold mt-1">Win ₹3600</p>
+                            <p class="text-xs mt-1">Travel 6</p>
+                        </div>
+                    </div>
+                    <div class="room-card bg-gradient-to-br from-green-500 to-blue-500 text-white p-4 rounded-2xl shadow-lg card-hover cursor-pointer" onclick="joinLudoRoom(5000, 9000, 7)">
+                        <div class="text-center">
+                            <i class="fas fa-dice text-4xl mb-2"></i>
+                            <p class="text-2xl font-bold">₹5000</p>
+                            <p class="text-xs">Ticket</p>
+                            <p class="text-md font-bold mt-1">Win ₹9000</p>
+                            <p class="text-xs mt-1">Travel 7</p>
+                        </div>
+                    </div>
+                    <div class="room-card bg-gradient-to-br from-green-500 to-blue-500 text-white p-4 rounded-2xl shadow-lg card-hover cursor-pointer" onclick="joinLudoRoom(10000, 18000, 8)">
+                        <div class="text-center">
+                            <i class="fas fa-dice text-4xl mb-2"></i>
+                            <p class="text-2xl font-bold">₹10000</p>
+                            <p class="text-xs">Ticket</p>
+                            <p class="text-md font-bold mt-1">Win ₹18000</p>
+                            <p class="text-xs mt-1">Travel 8</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -750,6 +853,7 @@
                                 <p><strong>Phone:</strong> <span id="profilePhone">-</span></p>
                                 <p><strong>Username:</strong> <span id="profileUsername">-</span></p>
                                 <p><strong>Joined Date:</strong> <span id="profileJoinDate">-</span></p>
+                                <p><strong>VIP Status:</strong> <span id="profileVIP">None</span> <span id="vipBadge" class="blue-tick ml-2"></span></p>
                             </div>
                         </div>
                         <div class="p-6 bg-light dark:bg-gray-700 rounded-2xl">
@@ -869,7 +973,7 @@
                 
                 <!-- UPI ID Display -->
                 <div class="mb-6 p-4 bg-yellow-50 dark:bg-yellow-900 rounded-xl border border-yellow-200 dark:border-yellow-700">
-                    <p class="text-center font-bold text-lg dark:text-white">Send payment to: <span class="text-primary">millnerkaptan01@fam</span></p>
+                    <p class="text-center font-bold text-lg dark:text-white">Send payment to: <span class="text-primary" id="currentUPI">millnerkaptan01@fam</span></p>
                     <p class="text-center text-sm mt-2 dark:text-gray-300">After payment, send screenshot to confirm</p>
                 </div>
 
@@ -939,6 +1043,26 @@
                     <p class="text-xl font-bold dark:text-white">Total Registered Users: <span id="totalUsers">0</span></p>
                 </div>
                 
+                <!-- VIP Activation Section -->
+                <div class="mb-6 bg-light dark:bg-gray-700 p-6 rounded-2xl">
+                    <h3 class="text-xl font-bold mb-4 dark:text-white">Activate VIP Membership</h3>
+                    <div class="grid md:grid-cols-4 gap-4 mb-4">
+                        <input type="email" id="adminUserEmailVIP" placeholder="User Email" class="p-3 border rounded-xl dark:bg-gray-600 dark:text-white">
+                        <select id="adminVIPLevel" class="p-3 border rounded-xl dark:bg-gray-600 dark:text-white">
+                            <option value="1">VIP 1</option>
+                            <option value="2">VIP 2</option>
+                            <option value="3">VIP 3</option>
+                        </select>
+                        <select id="adminVIPDuration" class="p-3 border rounded-xl dark:bg-gray-600 dark:text-white">
+                            <option value="monthly">Monthly</option>
+                            <option value="yearly">Yearly</option>
+                        </select>
+                        <button onclick="activateVIP()" class="bg-purple-500 text-white px-4 py-3 rounded-xl font-bold hover:bg-purple-600 transition">
+                            Activate VIP
+                        </button>
+                    </div>
+                </div>
+
                 <!-- User Stats Update Section -->
                 <div class="mb-6 bg-light dark:bg-gray-700 p-6 rounded-2xl">
                     <h3 class="text-xl font-bold mb-4 dark:text-white">Update User Stats</h3>
@@ -1034,8 +1158,8 @@
             }
         ];
 
-        // Spin Wheel Prizes
-        const wheelPrizes = ['₹5', '₹10', '₹20', '₹5', '₹50', '₹5', '₹100', '₹5'];
+        // Spin Wheel Prizes - More realistic win/loss ratio
+        const wheelPrizes = ['₹0', '₹1', '₹3', '₹0', '₹5', '₹0', '₹7', '₹8', '₹0', '₹10'];
 
         // Live Stats Data
         const transactions = [
@@ -1126,13 +1250,77 @@
         function changeQRCode() {
             currentQR = (currentQR % 3) + 1;
             const qrContainer = document.getElementById('currentQR');
+            const upiDisplay = document.getElementById('currentUPI');
             qrContainer.innerHTML = `
                 <img src="${qrCodes[currentQR-1].src}" alt="${qrCodes[currentQR-1].label}" class="mx-auto border-4 border-primary rounded-xl w-64 h-64 object-contain bg-white p-4">
                 <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">${qrCodes[currentQR-1].label}</p>
             `;
+            upiDisplay.textContent = qrCodes[currentQR-1].upi;
         }
 
-        // Spin Wheel Function
+        // VIP Membership Functions
+        function upgradeVIP(level) {
+            if (!currentUser) {
+                alert('Please login first!');
+                return;
+            }
+            
+            let price = 0;
+            let duration = 'monthly';
+            
+            if (level === 1) {
+                price = 199;
+            } else if (level === 2) {
+                price = 499;
+            } else if (level === 3) {
+                price = 900;
+            }
+            
+            const msg = `🎮 VIP UPGRADE REQUEST 🎮
+👤 User: ${currentUser.username}
+📧 Email: ${currentUser.email}
+📱 Phone: ${currentUser.phone}
+💰 VIP Level: ${level}
+💵 Price: ₹${price}
+⏰ Duration: ${duration}
+⏰ Timestamp: ${new Date().toLocaleString()}
+🔗 Platform: Free Fire & PUBG Tournament`;
+
+            window.open(`https://wa.me/12264939021?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        // Admin VIP Activation
+        function activateVIP() {
+            const email = document.getElementById('adminUserEmailVIP').value.trim().toLowerCase();
+            const level = document.getElementById('adminVIPLevel').value;
+            const duration = document.getElementById('adminVIPDuration').value;
+            
+            if (!email) return alert('Enter user email');
+
+            const user = users.find(u => u.email.toLowerCase() === email);
+            if (!user) return alert('User not found!');
+
+            user.vipLevel = parseInt(level);
+            user.vipDuration = duration;
+            user.vipActive = true;
+            
+            // Set VIP expiry date
+            const expiryDate = new Date();
+            if (duration === 'monthly') {
+                expiryDate.setMonth(expiryDate.getMonth() + 1);
+            } else {
+                expiryDate.setFullYear(expiryDate.getFullYear() + 1);
+            }
+            user.vipExpiry = expiryDate.toISOString();
+
+            saveUsersToCloud();
+            alert(`VIP ${level} activated for ${user.username} (${duration})`);
+            
+            // Clear fields
+            document.getElementById('adminUserEmailVIP').value = '';
+        }
+
+        // Spin Wheel Function - Improved with realistic win/loss
         function spinWheel() {
             if (!currentUser) {
                 alert('Please login first!');
@@ -1154,18 +1342,23 @@
             resultDiv.textContent = 'Spinning...';
 
             setTimeout(() => {
-                const randomPrize = wheelPrizes[Math.floor(Math.random() * wheelPrizes.length)];
-                const prizeAmount = parseInt(randomPrize.replace('₹', ''));
+                // More realistic win/loss ratio - mostly small wins/losses
+                const randomIndex = Math.floor(Math.random() * wheelPrizes.length);
+                const prize = wheelPrizes[randomIndex];
+                const prizeAmount = parseInt(prize.replace('₹', '')) || 0;
                 
                 currentUser.balance += prizeAmount;
                 updateBalance();
                 
-                resultDiv.textContent = `Congratulations! You won ${randomPrize}!`;
-                wheel.classList.remove('spin-wheel');
-
-                // Add confetti effect
-                createConfetti();
+                if (prizeAmount > 0) {
+                    resultDiv.textContent = `Congratulations! You won ${prize}!`;
+                    // Add confetti effect for wins
+                    createConfetti();
+                } else {
+                    resultDiv.textContent = `Better luck next time! You won ${prize}`;
+                }
                 
+                wheel.classList.remove('spin-wheel');
                 saveUsersToCloud();
             }, 2000);
         }
@@ -1347,6 +1540,29 @@
             }
         }
 
+        // Ludo Room Join Function
+        async function joinLudoRoom(ticket, win, travel) {
+            if (!currentUser) { showLogin(); return; }
+            if (currentUser.balance < ticket) { alert('Insufficient balance!'); showSection('deposit'); return; }
+            if (confirm(`Join Travel ${travel} Ludo room? Ticket: ₹${ticket}, Win: ₹${win}`)) {
+                currentUser.balance -= ticket;
+                
+                const msg = `🎲 LUDO ROOM REQUEST 🎲
+👤 User: ${currentUser.username}
+📧 Email: ${currentUser.email}
+📱 Phone: ${currentUser.phone}
+🎫 Travel: ${travel}
+💰 Ticket: ₹${ticket}
+🏆 Potential Win: ₹${win}
+⏰ Timestamp: ${new Date().toLocaleString()}
+🔗 Platform: Free Fire & PUBG Tournament`;
+
+                alert(`Joined Travel ${travel} Ludo room! Win up to ₹${win}`);
+                await updateBalance();
+                window.open(`https://wa.me/12264939021?text=${encodeURIComponent(msg)}`, '_blank');
+            }
+        }
+
         async function joinErangel(amount) {
             if (!currentUser) { showLogin(); return; }
             if (currentUser.balance < amount) { alert('Insufficient balance!'); showSection('deposit'); return; }
@@ -1378,7 +1594,7 @@
 📧 Email: ${currentUser.email}
 📱 Phone: ${currentUser.phone}
 💰 Amount: ₹${amt}
-🏦 Payment Method: millnerkaptan01@fam
+🏦 Payment Method: ${document.getElementById('currentUPI').textContent}
 ⏰ Timestamp: ${new Date().toLocaleString()}
 🔗 Platform: Free Fire & PUBG Tournament`;
 
@@ -1448,7 +1664,11 @@
                 totalDeposits: 0,
                 totalWinnings: 0,
                 totalWithdrawals: 0,
-                commissionHistory: []
+                commissionHistory: [],
+                vipLevel: 0,
+                vipActive: false,
+                vipDuration: null,
+                vipExpiry: null
             };
             users.push(user);
             
@@ -1582,6 +1802,26 @@
             document.getElementById('joinDate').textContent = user.joinDate;
             document.getElementById('walletBalance').textContent = `₹${user.balance}`;
             updateLastSeen();
+            
+            // Update VIP status display
+            updateVIPDisplay();
+        }
+
+        // Update VIP status display
+        function updateVIPDisplay() {
+            if (currentUser && currentUser.vipActive) {
+                document.getElementById('profileVIP').textContent = `VIP ${currentUser.vipLevel}`;
+                document.getElementById('vipBadge').innerHTML = '<i class="fas fa-check-circle"></i>';
+                
+                // Add VIP class to user info card
+                const userCard = document.querySelector('.bg-gradient-to-r.from-primary.to-secondary');
+                if (userCard) {
+                    userCard.classList.add('vip-active');
+                }
+            } else {
+                document.getElementById('profileVIP').textContent = 'None';
+                document.getElementById('vipBadge').innerHTML = '';
+            }
         }
 
         // Initialize cloud database
@@ -1685,6 +1925,9 @@
                 document.getElementById('profileGames').textContent = currentUser.gamesPlayed || 0;
                 document.getElementById('profileWinnings').textContent = currentUser.totalWinnings || 0;
                 document.getElementById('profileWithdrawals').textContent = currentUser.totalWithdrawals || 0;
+                
+                // Update VIP status
+                updateVIPDisplay();
             }
         }
 
@@ -1748,6 +1991,7 @@
             }
             
             users.forEach(user => {
+                const vipStatus = user.vipActive ? `VIP ${user.vipLevel} (${user.vipDuration})` : 'None';
                 const div = document.createElement('div');
                 div.className = 'p-4 border rounded-xl bg-gray-50 dark:bg-gray-700';
                 div.innerHTML = `
@@ -1755,7 +1999,7 @@
                     <p class="dark:text-gray-300">Phone: ${user.phone} | Balance: ₹${user.balance}</p>
                     <p class="text-sm text-gray-600 dark:text-gray-400">Winnings: ₹${user.totalWinnings || 0} | Withdrawals: ₹${user.totalWithdrawals || 0}</p>
                     <p class="text-sm text-gray-600 dark:text-gray-400">Referrals: ${user.totalReferrals || 0} | Ref Earnings: ₹${user.referralEarnings || 0}</p>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">Joined: ${user.joinDate}</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">VIP: ${vipStatus} | Joined: ${user.joinDate}</p>
                     <div class="flex gap-2 mt-2">
                         <input type="number" placeholder="Amount" class="p-2 border rounded w-24 dark:bg-gray-600 dark:text-white" min="1">
                         <button onclick="addFund('${user.email}', this.previousElementSibling.value)" class="bg-green-500 text-white px-3 py-1 rounded text-sm">Add</button>
@@ -1899,7 +2143,7 @@
                 const angle = index * segmentAngle;
                 return `
                     <div class="absolute w-1/2 h-1/2 origin-bottom-right" style="transform: rotate(${angle}deg); transform-origin: bottom right;">
-                        <div class="w-full h-full bg-${['red', 'blue', 'green', 'yellow', 'purple', 'pink', 'indigo', 'teal'][index]}-500 transform origin-bottom-left rotate(${segmentAngle}deg) flex items-center justify-center">
+                        <div class="w-full h-full bg-${['red', 'blue', 'green', 'yellow', 'purple', 'pink', 'indigo', 'teal', 'orange', 'cyan'][index]}-500 transform origin-bottom-left rotate(${segmentAngle}deg) flex items-center justify-center">
                             <span class="text-white text-xs font-bold transform -rotate-${segmentAngle * 1.5}">${prize}</span>
                         </div>
                     </div>
