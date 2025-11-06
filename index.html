@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -352,7 +353,7 @@
         <div class="notification-bell relative">
             <button id="notificationBtn" class="bg-accent text-dark p-3 rounded-full shadow-lg hover:bg-secondary transition">
                 <i class="fas fa-bell"></i>
-                <span class="notification-badge" id="notificationBadge">3</span>
+                <span class="notification-badge" id="notificationBadge">0</span>
             </button>
             <div id="notificationDropdown" class="notification-dropdown">
                 <!-- Notifications will be populated here -->
@@ -1204,22 +1205,12 @@
                 <div class="mb-6 p-4 bg-yellow-50 dark:bg-yellow-900 rounded-xl border border-yellow-200 dark:border-yellow-700">
                     <p class="text-center font-bold text-lg dark:text-white">Send payment to: <span class="text-primary" id="currentUPI">millnerkaptan01@fam</span></p>
                     <p class="text-center text-sm mt-2 dark:text-gray-300">After payment, send screenshot to confirm</p>
-                </div>
-
-                <!-- QR Code Section -->
-                <div class="mb-6">
-                    <h3 class="text-xl font-bold text-primary dark:text-white mb-4 text-center">Scan QR Code to Pay</h3>
-                    
-                    <!-- Current QR Code -->
-                    <div id="currentQR" class="text-center mb-4">
-                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA... (Base64 for first QR - millnerkaptan01@fam)" alt="QR Code 1" class="mx-auto border-4 border-primary rounded-xl w-64 h-64 object-contain bg-white p-4">
-                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">QR Code 1 - UPI: millnerkaptan01@fam</p>
-                    </div>
-
-                    <!-- QR Change Button -->
-                    <div class="text-center">
-                        <button onclick="changeQRCode()" class="bg-secondary text-white px-6 py-2 rounded-full hover:bg-primary transition">
-                            <i class="fas fa-sync-alt mr-2"></i>Change QR Code
+                    <div class="flex justify-center space-x-2 mt-3">
+                        <button onclick="copyUPI()" class="bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-bold hover:bg-blue-600 transition">
+                            <i class="fas fa-copy mr-1"></i>Copy UPI
+                        </button>
+                        <button onclick="changeUPI()" class="bg-secondary text-white px-4 py-2 rounded-full text-sm font-bold hover:bg-primary transition">
+                            <i class="fas fa-sync-alt mr-1"></i>Change UPI
                         </button>
                     </div>
                 </div>
@@ -1270,6 +1261,11 @@
                 </div>
                 <div id="inAppChatMessages" class="h-96 overflow-y-auto mb-4 p-4 bg-light dark:bg-gray-700 rounded">
                     <!-- Chat messages will load here -->
+                    <div class="text-center mb-4">
+                        <a href="https://wa.me/12264939021" target="_blank" class="bg-green-500 text-white px-6 py-3 rounded-full font-bold hover:bg-green-600 transition inline-flex items-center">
+                            <i class="fab fa-whatsapp mr-2"></i>Chat on WhatsApp
+                        </a>
+                    </div>
                 </div>
                 <div class="flex">
                     <input type="text" id="inAppChatInput" placeholder="Type your message..." class="flex-1 p-2 border rounded-l dark:bg-gray-700 dark:text-white">
@@ -1291,6 +1287,22 @@
                     <p class="text-xl font-bold dark:text-white">Total Registered Users: <span id="totalUsers">0</span></p>
                 </div>
                 
+                <!-- Notification Send Section -->
+                <div class="mb-6 bg-light dark:bg-gray-700 p-6 rounded-2xl">
+                    <h3 class="text-xl font-bold mb-4 dark:text-white">📢 Send Notification to All Users</h3>
+                    <div class="grid md:grid-cols-3 gap-4 mb-4">
+                        <input type="text" id="adminNotificationMessage" placeholder="Notification Message" class="p-3 border rounded-xl dark:bg-gray-600 dark:text-white">
+                        <select id="adminNotificationType" class="p-3 border rounded-xl dark:bg-gray-600 dark:text-white">
+                            <option value="info">Info</option>
+                            <option value="success">Success</option>
+                            <option value="warning">Warning</option>
+                        </select>
+                        <button onclick="sendGlobalNotification()" class="bg-blue-500 text-white px-4 py-3 rounded-xl font-bold hover:bg-blue-600 transition">
+                            Send to All
+                        </button>
+                    </div>
+                </div>
+
                 <!-- VIP Activation Section -->
                 <div class="mb-6 bg-light dark:bg-gray-700 p-6 rounded-2xl">
                     <h3 class="text-xl font-bold mb-4 dark:text-white">Activate VIP Membership</h3>
@@ -1333,6 +1345,19 @@
                         <input type="number" id="adminUserReferralEarnings" placeholder="Referral Earnings" class="p-3 border rounded-xl dark:bg-gray-600 dark:text-white">
                         <button onclick="updateReferralStats()" class="bg-blue-500 text-white px-4 py-3 rounded-xl font-bold hover:bg-blue-600 transition">
                             Update Referral
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Manual Referral Commission Add/Deduct Section -->
+                <div class="mb-6 bg-light dark:bg-gray-700 p-6 rounded-2xl">
+                    <h3 class="text-xl font-bold mb-4 dark:text-white">Manual Referral Commission</h3>
+                    <div class="grid md:grid-cols-4 gap-4 mb-4">
+                        <input type="email" id="adminReferralUserEmail" placeholder="User Email" class="p-3 border rounded-xl dark:bg-gray-600 dark:text-white">
+                        <input type="number" id="adminReferralAmount" placeholder="Amount (Positive=Add, Negative=Deduct)" class="p-3 border rounded-xl dark:bg-gray-600 dark:text-white">
+                        <input type="text" id="adminReferralReason" placeholder="Reason (e.g., Manual Add)" class="p-3 border rounded-xl dark:bg-gray-600 dark:text-white">
+                        <button onclick="manualReferralCommission()" class="bg-green-500 text-white px-4 py-3 rounded-xl font-bold hover:bg-green-600 transition">
+                            Apply Commission
                         </button>
                     </div>
                 </div>
@@ -1383,27 +1408,15 @@
         let currentUser = null;
         let users = [];
         let isAdmin = false;
-        let currentQR = 1;
+        let currentUPIIndex = 0;
         let isDarkMode = false;
         let currentLanguage = 'english';
+        let globalNotifications = []; // Global notifications array
 
-        // Updated QR Codes with User's Provided Ones (Replace with actual base64 or URLs)
-        const qrCodes = [
-            { 
-                src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA... (First QR - millnerkaptan01@fam)", 
-                label: "QR Code 1 - UPI: millnerkaptan01@fam",
-                upi: "millnerkaptan01@fam"
-            },
-            { 
-                src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA... (Second QR - @mbk)", 
-                label: "QR Code 2 - UPI: @mbk",
-                upi: "@mbk" 
-            },
-            { 
-                src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA... (Third QR - hbk@ybl)", 
-                label: "QR Code 3 - UPI: hbk@ybl",
-                upi: "hbk@ybl"
-            }
+        // Updated UPI IDs
+        const upiIds = [
+            "millnerkaptan01@fam",
+            "rajendrafreefire@fam"
         ];
 
         // Spin Wheel Prizes - More realistic win/loss ratio
@@ -1444,13 +1457,6 @@
                 referralBonus: "हर सीधे सदस्य के डिपॉजिट पर 2% कमीशन पाएं!"
             }
         };
-
-        // New Feature: Notifications Data
-        const notifications = [
-            { id: 1, message: "New match starting in 5 min!", type: 'info' },
-            { id: 2, message: "Your referral earned ₹20 commission!", type: 'success' },
-            { id: 3, message: "Daily bonus available - claim now!", type: 'warning' }
-        ];
 
         // Initialize Live Stats - Enhanced
         function initializeLiveStats() {
@@ -1498,22 +1504,51 @@
             }
         }
 
-        // New Feature: Notification System
+        // Enhanced Notification System - Dynamic from Cloud
         function initializeNotifications() {
+            const userNotifications = currentUser ? (currentUser.notifications || []) : [];
+            const allNotifications = [...globalNotifications, ...userNotifications].slice(-10).reverse(); // Last 10, newest first
             const dropdown = document.getElementById('notificationDropdown');
-            dropdown.innerHTML = notifications.map(notif => 
+            dropdown.innerHTML = allNotifications.map(notif => 
                 `<div class="notification-item ${notif.type}">
                     <i class="fas fa-${notif.type === 'success' ? 'check' : notif.type === 'warning' ? 'exclamation' : 'info'}-circle mr-2"></i>
                     ${notif.message}
+                    <p class="text-xs text-gray-500 mt-1">${notif.date}</p>
                 </div>`
             ).join('');
 
-            document.getElementById('notificationBadge').textContent = notifications.length;
+            document.getElementById('notificationBadge').textContent = allNotifications.length;
         }
 
         function toggleNotifications() {
             document.getElementById('notificationDropdown').style.display = 
                 document.getElementById('notificationDropdown').style.display === 'block' ? 'none' : 'block';
+        }
+
+        // Admin: Send Global Notification
+        function sendGlobalNotification() {
+            const message = document.getElementById('adminNotificationMessage').value.trim();
+            const type = document.getElementById('adminNotificationType').value;
+            if (!message) return alert('Enter message');
+
+            const notif = {
+                id: Date.now(),
+                message,
+                type,
+                date: new Date().toLocaleString(),
+                global: true
+            };
+
+            globalNotifications.unshift(notif);
+            users.forEach(user => {
+                if (!user.notifications) user.notifications = [];
+                user.notifications.unshift(notif);
+            });
+
+            saveUsersToCloud();
+            alert('Global notification sent!');
+            document.getElementById('adminNotificationMessage').value = '';
+            if (currentUser) initializeNotifications();
         }
 
         // Theme Toggle
@@ -1535,20 +1570,21 @@
         function updateLanguage() {
             const trans = translations[currentLanguage];
             // Update key elements
-            document.querySelector('#welcomeUser ~ p').textContent = trans.welcome;
+            if (document.querySelector('#welcomeUser ~ p')) document.querySelector('#welcomeUser ~ p').textContent = trans.welcome;
             // More updates as needed
         }
 
-        // QR Code Functions - Updated with New Codes
-        function changeQRCode() {
-            currentQR = (currentQR % 3) + 1;
-            const qrContainer = document.getElementById('currentQR');
-            const upiDisplay = document.getElementById('currentUPI');
-            qrContainer.innerHTML = `
-                <img src="${qrCodes[currentQR-1].src}" alt="${qrCodes[currentQR-1].label}" class="mx-auto border-4 border-primary rounded-xl w-64 h-64 object-contain bg-white p-4">
-                <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">${qrCodes[currentQR-1].label}</p>
-            `;
-            upiDisplay.textContent = qrCodes[currentQR-1].upi;
+        // UPI Functions
+        function changeUPI() {
+            currentUPIIndex = (currentUPIIndex + 1) % upiIds.length;
+            document.getElementById('currentUPI').textContent = upiIds[currentUPIIndex];
+        }
+
+        function copyUPI() {
+            const upi = document.getElementById('currentUPI').textContent;
+            navigator.clipboard.writeText(upi).then(() => {
+                alert('UPI copied to clipboard!');
+            });
         }
 
         // New Feature: Chat Functions
@@ -2004,6 +2040,7 @@
                 totalWinnings: 0,
                 totalWithdrawals: 0,
                 commissionHistory: [],
+                notifications: [],
                 vipLevel: 0,
                 vipActive: false,
                 vipDuration: null,
@@ -2028,6 +2065,15 @@
                         date: new Date().toLocaleString(),
                         from: user.username,
                         type: 'Signup Bonus'
+                    });
+                    
+                    // Update referrer's transaction history
+                    if (!referrer.transactionHistory) referrer.transactionHistory = [];
+                    referrer.transactionHistory.unshift({
+                        type: 'Referral Signup Bonus',
+                        amount: 5,
+                        date: new Date().toLocaleString(),
+                        from: user.username
                     });
                     
                     alert(`🎉 You received ₹5 referral bonus!`);
@@ -2072,6 +2118,47 @@
             }
         }
 
+        // Admin: Manual Referral Commission
+        function manualReferralCommission() {
+            const email = document.getElementById('adminReferralUserEmail').value.trim().toLowerCase();
+            const amountStr = document.getElementById('adminReferralAmount').value;
+            const reason = document.getElementById('adminReferralReason').value.trim();
+            const amount = parseFloat(amountStr);
+
+            if (!email || isNaN(amount) || !reason) return alert('Enter email, amount, and reason');
+
+            const user = users.find(u => u.email.toLowerCase() === email);
+            if (!user) return alert('User not found!');
+
+            const prevEarnings = user.referralEarnings || 0;
+            user.referralEarnings = prevEarnings + amount;
+            user.balance += amount;
+
+            // Add to commission history
+            if (!user.commissionHistory) user.commissionHistory = [];
+            user.commissionHistory.push({
+                amount: amount,
+                date: new Date().toLocaleString(),
+                from: 'Admin',
+                type: reason
+            });
+
+            // Add transaction
+            if (!user.transactionHistory) user.transactionHistory = [];
+            user.transactionHistory.unshift({
+                type: 'Manual Referral Commission',
+                amount: amount,
+                date: new Date().toLocaleString(),
+                from: reason
+            });
+
+            saveUsersToCloud();
+            alert(`Manual commission applied: ₹${amount} to ${user.username}. New earnings: ₹${user.referralEarnings}`);
+            document.getElementById('adminReferralUserEmail').value = '';
+            document.getElementById('adminReferralAmount').value = '';
+            document.getElementById('adminReferralReason').value = '';
+        }
+
         // Admin function to update user stats
         async function updateUserStats() {
             const email = document.getElementById('adminUserEmailStats').value.trim().toLowerCase();
@@ -2085,6 +2172,15 @@
 
             user.totalWinnings = winnings;
             user.totalWithdrawals = withdrawals;
+
+            // Add to transaction history if changed
+            if (!user.transactionHistory) user.transactionHistory = [];
+            user.transactionHistory.unshift({
+                type: 'Admin Stats Update',
+                amount: 0,
+                date: new Date().toLocaleString(),
+                note: `Winnings: ₹${winnings}, Withdrawals: ₹${withdrawals}`
+            });
 
             await saveUsersToCloud();
             alert(`Stats updated for ${user.username}\nWinnings: ₹${winnings}\nWithdrawals: ₹${withdrawals}`);
@@ -2108,6 +2204,15 @@
 
             user.totalReferrals = referrals;
             user.referralEarnings = referralEarnings;
+
+            // Add to transaction history
+            if (!user.transactionHistory) user.transactionHistory = [];
+            user.transactionHistory.unshift({
+                type: 'Admin Referral Update',
+                amount: 0,
+                date: new Date().toLocaleString(),
+                note: `Referrals: ${referrals}, Earnings: ₹${referralEarnings}`
+            });
 
             await saveUsersToCloud();
             alert(`Referral stats updated for ${user.username}\nTotal Referrals: ${referrals}\nReferral Earnings: ₹${referralEarnings}`);
@@ -2141,11 +2246,13 @@
             document.getElementById('dashUsername').textContent = user.username;
             document.getElementById('welcomeUser').textContent = user.username;
             document.getElementById('joinDate').textContent = user.joinDate;
-            document.getElementById('walletBalance').textContent = `₹${user.balance}`;
+            updateBalance(); // Ensure balance updates on login/refresh
             updateLastSeen();
             
             // Update VIP status display
             updateVIPDisplay();
+            // Load notifications
+            initializeNotifications();
         }
 
         // Update VIP status display
@@ -2178,14 +2285,17 @@
                 if (response.ok) {
                     const data = await response.json();
                     users = data.record.users || [];
+                    globalNotifications = data.record.globalNotifications || [];
                     console.log('Cloud data loaded successfully:', users.length + ' users');
                 } else {
                     console.log('Cloud load failed, using localStorage');
                     users = JSON.parse(localStorage.getItem('ludoUsers') || '[]');
+                    globalNotifications = JSON.parse(localStorage.getItem('globalNotifications') || '[]');
                 }
             } catch (error) {
                 console.log('Cloud database not available, using localStorage');
                 users = JSON.parse(localStorage.getItem('ludoUsers') || '[]');
+                globalNotifications = JSON.parse(localStorage.getItem('globalNotifications') || '[]');
             }
         }
 
@@ -2198,7 +2308,10 @@
                         'Content-Type': 'application/json',
                         'X-Master-Key': JSONBIN_API_KEY
                     },
-                    body: JSON.stringify({ users: users })
+                    body: JSON.stringify({ 
+                        users: users,
+                        globalNotifications: globalNotifications 
+                    })
                 });
                 
                 if (response.ok) {
@@ -2210,13 +2323,15 @@
             } catch (error) {
                 console.log('Cloud save failed, using localStorage');
                 localStorage.setItem('ludoUsers', JSON.stringify(users));
+                localStorage.setItem('globalNotifications', JSON.stringify(globalNotifications));
                 return false;
             }
         }
 
         function updateBalance() {
             if (currentUser) {
-                document.getElementById('walletBalance').textContent = `₹${currentUser.balance}`;
+                document.getElementById('walletBalance').textContent = `₹${currentUser.balance || 0}`;
+                document.getElementById('profileBalance').textContent = currentUser.balance || 0;
                 localStorage.setItem('currentUser', JSON.stringify(currentUser));
                 saveUsersToCloud();
             }
@@ -2255,6 +2370,10 @@
                 // Load in-app chat
                 document.getElementById('inAppChatMessages').innerHTML = '<p class="text-gray-500">Start chatting with support!</p>';
             }
+            if (section === 'deposit') {
+                // Set initial UPI
+                document.getElementById('currentUPI').textContent = upiIds[0];
+            }
             toggleMenu();
         }
 
@@ -2266,7 +2385,7 @@
                 document.getElementById('profilePhone').textContent = currentUser.phone;
                 document.getElementById('profileUsername').textContent = currentUser.username;
                 document.getElementById('profileJoinDate').textContent = currentUser.joinDate;
-                document.getElementById('profileBalance').textContent = currentUser.balance;
+                document.getElementById('profileBalance').textContent = currentUser.balance || 0;
                 document.getElementById('profileGames').textContent = currentUser.gamesPlayed || 0;
                 document.getElementById('profileWinnings').textContent = currentUser.totalWinnings || 0;
                 document.getElementById('profileWithdrawals').textContent = currentUser.totalWithdrawals || 0;
@@ -2285,10 +2404,11 @@
             if (currentUser) {
                 // Transaction History
                 if (currentUser.transactionHistory && currentUser.transactionHistory.length > 0) {
-                    transactionHistory.innerHTML = currentUser.transactionHistory.map(transaction => 
+                    transactionHistory.innerHTML = currentUser.transactionHistory.slice(0, 10).map(transaction => 
                         `<div class="p-3 bg-white dark:bg-gray-600 rounded-lg border">
-                            <p class="dark:text-white"><strong>${transaction.type}</strong> - ₹${transaction.amount}</p>
+                            <p class="dark:text-white"><strong>${transaction.type}</strong> - ₹${transaction.amount || 0}</p>
                             <p class="text-sm text-gray-600 dark:text-gray-400">${transaction.date}</p>
+                            ${transaction.note ? `<p class="text-xs text-gray-500">${transaction.note}</p>` : ''}
                         </div>`
                     ).join('');
                 } else {
@@ -2375,6 +2495,7 @@
             const user = users.find(u => u.email.toLowerCase() === email.toLowerCase());
             if (!user) return alert('User not found! Check email spelling.');
             user.balance += amt;
+            user.totalDeposits = (user.totalDeposits || 0) + amt;
             
             // Add referral commission if applicable
             addReferralCommission(user, amt);
@@ -2455,7 +2576,6 @@
             await initializeDatabase();
             initializeLiveStats(); // Start live stats
             createParticles(); // New: Particles
-            initializeNotifications(); // New: Notifications
             checkReferral(); // Check for referral codes
             
             // Load theme preference
@@ -2473,7 +2593,9 @@
             if (saved) {
                 const user = JSON.parse(saved);
                 const found = users.find(u => u.email === user.email);
-                if (found) loginSuccess(found);
+                if (found) {
+                    loginSuccess(found);
+                }
             }
             if (localStorage.getItem('adminLoggedIn') === 'true') isAdmin = true;
 
