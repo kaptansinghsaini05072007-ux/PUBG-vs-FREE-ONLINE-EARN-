@@ -108,19 +108,82 @@
             background-size: 400% 400%;
             animation: gradientShift 6s ease infinite;
         }
+        .dark-mode {
+            background-color: #1a202c;
+            color: #e2e8f0;
+        }
+        .dark-mode .bg-white {
+            background-color: #2d3748;
+        }
+        .dark-mode .text-dark {
+            color: #e2e8f0;
+        }
+        .dark-mode .bg-light {
+            background-color: #4a5568;
+        }
+        .match-running {
+            background: linear-gradient(45deg, #48bb78, #68d391);
+            color: white;
+        }
+        .match-upcoming {
+            background: linear-gradient(45deg, #ed8936, #fbd38d);
+            color: white;
+        }
+        .match-completed {
+            background: linear-gradient(45deg, #a0aec0, #cbd5e0);
+            color: white;
+        }
+        .vip-badge {
+            background: linear-gradient(45deg, #ffd700, #ffed4a);
+            color: #000;
+            font-weight: bold;
+        }
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #ff0000;
+            opacity: 0.8;
+            animation: confetti-fall 5s linear infinite;
+        }
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100px) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+        .spin-wheel {
+            animation: spin 2s ease-out;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body class="bg-light font-body text-dark min-h-screen overflow-x-hidden">
 
+    <!-- Theme Toggle -->
+    <div class="fixed top-20 right-4 z-50">
+        <button id="themeToggle" class="bg-primary text-white p-3 rounded-full shadow-lg hover:bg-secondary transition">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+
+    <!-- Language Selector -->
+    <div class="fixed top-32 right-4 z-50">
+        <button id="languageToggle" class="bg-secondary text-white p-3 rounded-full shadow-lg hover:bg-primary transition">
+            <i class="fas fa-globe"></i>
+        </button>
+    </div>
+
     <!-- Landing Page (Before Login) -->
     <div id="landingPage" class="min-h-screen flex flex-col">
         <!-- Navbar -->
-        <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <nav class="bg-white shadow-lg sticky top-0 z-50 dark:bg-gray-800">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between items-center h-16">
                     <div class="flex items-center">
                         <i class="fas fa-gamepad text-primary text-3xl mr-2 floating"></i>
-                        <h1 class="text-2xl font-heading text-primary">Free Fire & PUBG</h1>
+                        <h1 class="text-2xl font-heading text-primary dark:text-white">Free Fire & PUBG</h1>
                     </div>
                     <div class="flex space-x-3">
                         <button onclick="showLogin()" class="bg-primary text-white px-5 py-2 rounded-full hover:bg-secondary transition font-semibold text-sm">Login</button>
@@ -134,14 +197,14 @@
         <!-- Hero Section -->
         <section class="gradient-bg flex-1 flex items-center justify-center py-12 px-4">
             <div class="text-center text-white max-w-6xl w-full">
-                <!-- Gaming Images -->
+                <!-- Free Fire Images -->
                 <div class="flex justify-center items-center mb-8 space-x-4">
-                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=120&h=120&fit=crop&crop=center" 
-                         alt="Free Fire" class="w-20 h-20 md:w-28 md:h-28 rounded-xl hero-image floating">
-                    <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=120&h=120&fit=crop&crop=center" 
-                         alt="PUBG" class="w-20 h-20 md:w-28 md:h-28 rounded-xl hero-image floating" style="animation-delay: 0.5s;">
-                    <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=120&h=120&fit=crop&crop=center" 
-                         alt="Gaming" class="w-20 h-20 md:w-28 md:h-28 rounded-xl hero-image floating" style="animation-delay: 1s;">
+                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=150&h=150&fit=crop&crop=center" 
+                         alt="Free Fire" class="w-24 h-24 md:w-32 md:h-32 rounded-xl hero-image floating">
+                    <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=150&h=150&fit=crop&crop=center" 
+                         alt="Free Fire Battle" class="w-24 h-24 md:w-32 md:h-32 rounded-xl hero-image floating" style="animation-delay: 0.5s;">
+                    <img src="https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?w=150&h=150&fit=crop&crop=center" 
+                         alt="Free Fire Tournament" class="w-24 h-24 md:w-32 md:h-32 rounded-xl hero-image floating" style="animation-delay: 1s;">
                 </div>
 
                 <h1 class="text-4xl md:text-6xl font-heading mb-6">Play Free Fire & PUBG. Win Real Cash!</h1>
@@ -205,24 +268,24 @@
         </section>
 
         <!-- Features -->
-        <section class="py-16 bg-white">
+        <section class="py-16 bg-white dark:bg-gray-800">
             <div class="max-w-7xl mx-auto px-4">
-                <h2 class="text-4xl font-heading text-center mb-12 text-primary">Why Choose Us?</h2>
+                <h2 class="text-4xl font-heading text-center mb-12 text-primary dark:text-white">Why Choose Us?</h2>
                 <div class="grid md:grid-cols-3 gap-6">
-                    <div class="text-center p-6 bg-light rounded-2xl card-hover">
+                    <div class="text-center p-6 bg-light dark:bg-gray-700 rounded-2xl card-hover">
                         <i class="fas fa-bolt text-5xl text-secondary mb-4"></i>
-                        <h3 class="text-2xl font-bold mb-2">Instant Cashout</h3>
-                        <p>Withdraw winnings in 24 hours via UPI/Bank</p>
+                        <h3 class="text-2xl font-bold mb-2 dark:text-white">Instant Cashout</h3>
+                        <p class="dark:text-gray-300">Withdraw winnings in 24 hours via UPI/Bank</p>
                     </div>
-                    <div class="text-center p-6 bg-light rounded-2xl card-hover">
+                    <div class="text-center p-6 bg-light dark:bg-gray-700 rounded-2xl card-hover">
                         <i class="fas fa-lock text-5xl text-primary mb-4"></i>
-                        <h3 class="text-2xl font-bold mb-2">100% Safe</h3>
-                        <p>Fully encrypted. RNG certified fair play</p>
+                        <h3 class="text-2xl font-bold mb-2 dark:text-white">100% Safe</h3>
+                        <p class="dark:text-gray-300">Fully encrypted. RNG certified fair play</p>
                     </div>
-                    <div class="text-center p-6 bg-light rounded-2xl card-hover">
+                    <div class="text-center p-6 bg-light dark:bg-gray-700 rounded-2xl card-hover">
                         <i class="fas fa-trophy text-5xl text-accent mb-4"></i>
-                        <h3 class="text-2xl font-bold mb-2">Win 90%</h3>
-                        <p>Only 10% platform fee. Maximum earnings!</p>
+                        <h3 class="text-2xl font-bold mb-2 dark:text-white">Win 90%</h3>
+                        <p class="dark:text-gray-300">Only 10% platform fee. Maximum earnings!</p>
                     </div>
                 </div>
             </div>
@@ -231,17 +294,17 @@
 
     <!-- Signup Modal -->
     <div id="signupModal" class="fixed inset-0 bg-black bg-opacity-70 hidden flex items-center justify-center z-50 p-4">
-        <div class="bg-white rounded-3xl p-8 w-full max-w-md transform scale-95 transition">
+        <div class="bg-white dark:bg-gray-800 rounded-3xl p-8 w-full max-w-md transform scale-95 transition">
             <div class="flex justify-between items-center mb-6">
-                <h2 class="text-3xl font-heading text-primary">Create Account</h2>
-                <button onclick="closeModals()" class="text-2xl">×</button>
+                <h2 class="text-3xl font-heading text-primary dark:text-white">Create Account</h2>
+                <button onclick="closeModals()" class="text-2xl dark:text-white">×</button>
             </div>
             <form onsubmit="handleSignup(event)">
-                <input type="text" id="signupName" placeholder="Full Name" class="w-full p-4 mb-4 border-2 border-secondary rounded-xl focus:border-primary outline-none" required>
-                <input type="email" id="signupEmail" placeholder="Email" class="w-full p-4 mb-4 border-2 border-secondary rounded-xl focus:border-primary outline-none" required>
-                <input type="tel" id="signupPhone" placeholder="Phone (10 digits)" class="w-full p-4 mb-4 border-2 border-secondary rounded-xl focus:border-primary outline-none" pattern="[0-9]{10}" required>
-                <input type="text" id="signupReferralCode" placeholder="Referral Code (Optional)" class="w-full p-4 mb-4 border-2 border-secondary rounded-xl focus:border-primary outline-none">
-                <input type="password" id="signupPass" placeholder="Password" class="w-full p-4 mb-6 border-2 border-secondary rounded-xl focus:border-primary outline-none" required>
+                <input type="text" id="signupName" placeholder="Full Name" class="w-full p-4 mb-4 border-2 border-secondary rounded-xl focus:border-primary outline-none dark:bg-gray-700 dark:text-white" required>
+                <input type="email" id="signupEmail" placeholder="Email" class="w-full p-4 mb-4 border-2 border-secondary rounded-xl focus:border-primary outline-none dark:bg-gray-700 dark:text-white" required>
+                <input type="tel" id="signupPhone" placeholder="Phone (10 digits)" class="w-full p-4 mb-4 border-2 border-secondary rounded-xl focus:border-primary outline-none dark:bg-gray-700 dark:text-white" pattern="[0-9]{10}" required>
+                <input type="text" id="signupReferralCode" placeholder="Referral Code (Optional)" class="w-full p-4 mb-4 border-2 border-secondary rounded-xl focus:border-primary outline-none dark:bg-gray-700 dark:text-white">
+                <input type="password" id="signupPass" placeholder="Password" class="w-full p-4 mb-6 border-2 border-secondary rounded-xl focus:border-primary outline-none dark:bg-gray-700 dark:text-white" required>
                 <button type="submit" class="w-full bg-gradient-to-r from-primary to-secondary text-white py-4 rounded-xl font-bold text-lg hover:opacity-90 transition">
                     Sign Up Free
                 </button>
@@ -251,14 +314,14 @@
 
     <!-- Login Modal -->
     <div id="loginModal" class="fixed inset-0 bg-black bg-opacity-70 hidden flex items-center justify-center z-50 p-4">
-        <div class="bg-white rounded-3xl p-8 w-full max-w-md transform scale-95 transition">
+        <div class="bg-white dark:bg-gray-800 rounded-3xl p-8 w-full max-w-md transform scale-95 transition">
             <div class="flex justify-between items-center mb-6">
-                <h2 class="text-3xl font-heading text-primary">Welcome Back!</h2>
-                <button onclick="closeModals()" class="text-2xl">×</button>
+                <h2 class="text-3xl font-heading text-primary dark:text-white">Welcome Back!</h2>
+                <button onclick="closeModals()" class="text-2xl dark:text-white">×</button>
             </div>
             <form onsubmit="handleLogin(event)">
-                <input type="email" id="loginEmail" placeholder="Email" class="w-full p-4 mb-4 border-2 border-secondary rounded-xl focus:border-primary outline-none" required>
-                <input type="password" id="loginPass" placeholder="Password" class="w-full p-4 mb-6 border-2 border-secondary rounded-xl focus:border-primary outline-none" required>
+                <input type="email" id="loginEmail" placeholder="Email" class="w-full p-4 mb-4 border-2 border-secondary rounded-xl focus:border-primary outline-none dark:bg-gray-700 dark:text-white" required>
+                <input type="password" id="loginPass" placeholder="Password" class="w-full p-4 mb-6 border-2 border-secondary rounded-xl focus:border-primary outline-none dark:bg-gray-700 dark:text-white" required>
                 <button type="submit" class="w-full bg-gradient-to-r from-primary to-secondary text-white py-4 rounded-xl font-bold text-lg hover:opacity-90 transition">
                     Login Now
                 </button>
@@ -268,14 +331,14 @@
 
     <!-- Admin Login Modal -->
     <div id="adminLoginModal" class="fixed inset-0 bg-black bg-opacity-70 hidden flex items-center justify-center z-50 p-4">
-        <div class="bg-white rounded-3xl p-8 w-full max-w-md transform scale-95 transition">
+        <div class="bg-white dark:bg-gray-800 rounded-3xl p-8 w-full max-w-md transform scale-95 transition">
             <div class="flex justify-between items-center mb-6">
-                <h2 class="text-3xl font-heading text-primary">Admin Login</h2>
-                <button onclick="closeAdminModal()" class="text-2xl">×</button>
+                <h2 class="text-3xl font-heading text-primary dark:text-white">Admin Login</h2>
+                <button onclick="closeAdminModal()" class="text-2xl dark:text-white">×</button>
             </div>
             <form onsubmit="handleAdminLogin(event)">
-                <input type="email" id="adminEmail" placeholder="Admin Email" class="w-full p-4 mb-4 border-2 border-secondary rounded-xl focus:border-primary outline-none" required>
-                <input type="password" id="adminPass" placeholder="Password" class="w-full p-4 mb-6 border-2 border-secondary rounded-xl focus:border-primary outline-none" required>
+                <input type="email" id="adminEmail" placeholder="Admin Email" class="w-full p-4 mb-4 border-2 border-secondary rounded-xl focus:border-primary outline-none dark:bg-gray-700 dark:text-white" required>
+                <input type="password" id="adminPass" placeholder="Password" class="w-full p-4 mb-6 border-2 border-secondary rounded-xl focus:border-primary outline-none dark:bg-gray-700 dark:text-white" required>
                 <button type="submit" class="w-full bg-gradient-to-r from-primary to-secondary text-white py-4 rounded-xl font-bold text-lg hover:opacity-90 transition">
                     Admin Login
                 </button>
@@ -284,33 +347,41 @@
     </div>
 
     <!-- Dashboard (After Login) -->
-    <div id="dashboard" class="hidden min-h-screen bg-light">
+    <div id="dashboard" class="hidden min-h-screen bg-light dark:bg-gray-900">
         <!-- Dashboard Navbar -->
-        <nav class="bg-white shadow-lg sticky top-0 z-40">
+        <nav class="bg-white dark:bg-gray-800 shadow-lg sticky top-0 z-40">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between items-center h-16">
                     <div class="flex items-center">
                         <i class="fas fa-gamepad text-primary text-3xl mr-2"></i>
-                        <h1 class="text-2xl font-heading text-primary">Free Fire & PUBG</h1>
+                        <h1 class="text-2xl font-heading text-primary dark:text-white">Free Fire & PUBG</h1>
                     </div>
                     <div class="flex items-center space-x-6">
+                        <!-- Daily Login Bonus -->
+                        <div class="hidden md:block">
+                            <button onclick="claimDailyBonus()" class="bg-yellow-500 text-dark px-4 py-2 rounded-full font-bold hover:bg-yellow-600 transition">
+                                <i class="fas fa-gift mr-1"></i> Daily Bonus
+                            </button>
+                        </div>
                         <div class="text-right">
-                            <p class="font-bold" id="dashUsername">Player123</p>
-                            <p class="text-xs text-gray-600" id="lastSeen">Last seen: just now</p>
+                            <p class="font-bold dark:text-white" id="dashUsername">Player123</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400" id="lastSeen">Last seen: just now</p>
                         </div>
                         <div class="relative">
-                            <button onclick="toggleMenu()" class="text-3xl text-dark">
+                            <button onclick="toggleMenu()" class="text-3xl text-dark dark:text-white">
                                 <i class="fas fa-ellipsis-v"></i>
                             </button>
-                            <div id="menuDropdown" class="absolute right-0 mt-2 w-56 bg-white rounded-2xl shadow-xl hidden">
-                                <a href="#" onclick="showSection('profile')" class="block px-6 py-3 hover:bg-light rounded-t-2xl"><i class="fas fa-user mr-2"></i> Profile</a>
-                                <a href="#" onclick="showSection('history')" class="block px-6 py-3 hover:bg-light"><i class="fas fa-history mr-2"></i> History</a>
-                                <a href="#" onclick="showSection('deposit')" class="block px-6 py-3 hover:bg-light"><i class="fas fa-wallet mr-2"></i> Deposit</a>
-                                <a href="#" onclick="showSection('withdraw')" class="block px-6 py-3 hover:bg-light"><i class="fas fa-money-bill-wave mr-2"></i> Withdraw</a>
-                                <a href="#" onclick="showSection('referral')" class="block px-6 py-3 hover:bg-light"><i class="fas fa-user-plus mr-2"></i> Refer & Earn</a>
-                                <a href="https://wa.me/12264939021" target="_blank" class="block px-6 py-3 hover:bg-light"><i class="fas fa-headset mr-2"></i> Customer Support</a>
-                                <a href="https://t.me/+_W2RKTlpHI81MjJl" target="_blank" class="block px-6 py-3 hover:bg-light"><i class="fab fa-telegram mr-2"></i> Telegram Community</a>
-                                <a href="#" class="block px-6 py-3 hover:bg-light text-red-600 rounded-b-2xl" onclick="logout()"><i class="fas fa-sign-out-alt mr-2"></i> Logout</a>
+                            <div id="menuDropdown" class="absolute right-0 mt-2 w-56 bg-white dark:bg-gray-800 rounded-2xl shadow-xl hidden">
+                                <a href="#" onclick="showSection('profile')" class="block px-6 py-3 hover:bg-light dark:hover:bg-gray-700 rounded-t-2xl dark:text-white"><i class="fas fa-user mr-2"></i> Profile</a>
+                                <a href="#" onclick="showSection('history')" class="block px-6 py-3 hover:bg-light dark:hover:bg-gray-700 dark:text-white"><i class="fas fa-history mr-2"></i> History</a>
+                                <a href="#" onclick="showSection('deposit')" class="block px-6 py-3 hover:bg-light dark:hover:bg-gray-700 dark:text-white"><i class="fas fa-wallet mr-2"></i> Deposit</a>
+                                <a href="#" onclick="showSection('withdraw')" class="block px-6 py-3 hover:bg-light dark:hover:bg-gray-700 dark:text-white"><i class="fas fa-money-bill-wave mr-2"></i> Withdraw</a>
+                                <a href="#" onclick="showSection('referral')" class="block px-6 py-3 hover:bg-light dark:hover:bg-gray-700 dark:text-white"><i class="fas fa-user-plus mr-2"></i> Refer & Earn</a>
+                                <a href="#" onclick="showSection('spinwheel')" class="block px-6 py-3 hover:bg-light dark:hover:bg-gray-700 dark:text-white"><i class="fas fa-sync-alt mr-2"></i> Spin Wheel</a>
+                                <a href="#" onclick="showSection('leaderboard')" class="block px-6 py-3 hover:bg-light dark:hover:bg-gray-700 dark:text-white"><i class="fas fa-trophy mr-2"></i> Leaderboard</a>
+                                <a href="https://wa.me/12264939021" target="_blank" class="block px-6 py-3 hover:bg-light dark:hover:bg-gray-700 dark:text-white"><i class="fas fa-headset mr-2"></i> Customer Support</a>
+                                <a href="https://t.me/+_W2RKTlpHI81MjJl" target="_blank" class="block px-6 py-3 hover:bg-light dark:hover:bg-gray-700 dark:text-white"><i class="fab fa-telegram mr-2"></i> Telegram Community</a>
+                                <a href="#" class="block px-6 py-3 hover:bg-light dark:hover:bg-gray-700 text-red-600 rounded-b-2xl" onclick="logout()"><i class="fas fa-sign-out-alt mr-2"></i> Logout</a>
                             </div>
                         </div>
                     </div>
@@ -318,7 +389,7 @@
             </div>
         </nav>
 
-        <!-- Game Banners -->
+        <!-- Game Banners - Free Fire Theme -->
         <div class="max-w-7xl mx-auto px-4 py-6">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
                 <div class="game-banner rounded-2xl p-4 text-white text-center card-hover">
@@ -328,22 +399,22 @@
                     <p class="text-xs">Battle Royale</p>
                 </div>
                 <div class="game-banner rounded-2xl p-4 text-white text-center card-hover">
+                    <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=100&h=100&fit=crop&crop=center" 
+                         alt="Free Fire Battle" class="w-16 h-16 rounded-full mx-auto mb-2 border-2 border-white">
+                    <p class="font-bold text-sm">Clash Squad</p>
+                    <p class="text-xs">4v4 Matches</p>
+                </div>
+                <div class="game-banner rounded-2xl p-4 text-white text-center card-hover">
+                    <img src="https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?w=100&h=100&fit=crop&crop=center" 
+                         alt="Free Fire Tournament" class="w-16 h-16 rounded-full mx-auto mb-2 border-2 border-white">
+                    <p class="font-bold text-sm">Ranked Match</p>
+                    <p class="text-xs">Pro Level</p>
+                </div>
+                <div class="game-banner rounded-2xl p-4 text-white text-center card-hover">
                     <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=100&h=100&fit=crop&crop=center" 
                          alt="PUBG" class="w-16 h-16 rounded-full mx-auto mb-2 border-2 border-white">
                     <p class="font-bold text-sm">PUBG Mobile</p>
                     <p class="text-xs">Classic Mode</p>
-                </div>
-                <div class="game-banner rounded-2xl p-4 text-white text-center card-hover">
-                    <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=100&h=100&fit=crop&crop=center" 
-                         alt="Gaming" class="w-16 h-16 rounded-full mx-auto mb-2 border-2 border-white">
-                    <p class="font-bold text-sm">1v1 Battle</p>
-                    <p class="text-xs">Quick Matches</p>
-                </div>
-                <div class="game-banner rounded-2xl p-4 text-white text-center card-hover">
-                    <img src="https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?w=100&h=100&fit=crop&crop=center" 
-                         alt="Tournament" class="w-16 h-16 rounded-full mx-auto mb-2 border-2 border-white">
-                    <p class="font-bold text-sm">Tournaments</p>
-                    <p class="text-xs">Big Prizes</p>
                 </div>
             </div>
         </div>
@@ -368,90 +439,169 @@
             </div>
         </div>
 
+        <!-- VIP Membership Section -->
+        <div class="max-w-7xl mx-auto px-4 py-6">
+            <div class="bg-gradient-to-r from-purple-500 to-pink-500 text-white p-6 rounded-3xl shadow-xl">
+                <h2 class="text-2xl font-heading text-center mb-4">🎮 VIP Membership</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-white bg-opacity-20 p-4 rounded-2xl text-center">
+                        <h3 class="font-bold text-lg mb-2">VIP 1</h3>
+                        <p class="text-sm">Low Entry Fee</p>
+                        <p class="text-sm">5% Extra Bonus</p>
+                        <button class="mt-2 bg-white text-purple-600 px-4 py-1 rounded-full text-sm font-bold">Upgrade</button>
+                    </div>
+                    <div class="bg-white bg-opacity-20 p-4 rounded-2xl text-center">
+                        <h3 class="font-bold text-lg mb-2">VIP 2</h3>
+                        <p class="text-sm">Medium Entry Fee</p>
+                        <p class="text-sm">10% Extra Bonus</p>
+                        <button class="mt-2 bg-white text-purple-600 px-4 py-1 rounded-full text-sm font-bold">Upgrade</button>
+                    </div>
+                    <div class="bg-white bg-opacity-20 p-4 rounded-2xl text-center">
+                        <h3 class="font-bold text-lg mb-2">VIP 3</h3>
+                        <p class="text-sm">High Entry Fee</p>
+                        <p class="text-sm">15% Extra Bonus</p>
+                        <button class="mt-2 bg-white text-purple-600 px-4 py-1 rounded-full text-sm font-bold">Upgrade</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Live Matches Section -->
+        <div class="max-w-7xl mx-auto px-4 py-6">
+            <h2 class="text-3xl font-heading text-center mb-6 text-primary dark:text-white">🔥 Live Matches</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                <div class="match-running p-4 rounded-2xl text-white">
+                    <div class="flex justify-between items-center">
+                        <span class="font-bold">Running</span>
+                        <span class="text-sm">5 min left</span>
+                    </div>
+                    <p class="mt-2">₹100 Battle Royale</p>
+                    <p class="text-sm">12/16 Players</p>
+                </div>
+                <div class="match-upcoming p-4 rounded-2xl text-white">
+                    <div class="flex justify-between items-center">
+                        <span class="font-bold">Upcoming</span>
+                        <span class="text-sm">Starts in 10 min</span>
+                    </div>
+                    <p class="mt-2">₹50 Clash Squad</p>
+                    <p class="text-sm">8/8 Players</p>
+                </div>
+                <div class="match-completed p-4 rounded-2xl text-white">
+                    <div class="flex justify-between items-center">
+                        <span class="font-bold">Completed</span>
+                        <span class="text-sm">Winner: PlayerX</span>
+                    </div>
+                    <p class="mt-2">₹200 Tournament</p>
+                    <p class="text-sm">Prize: ₹360</p>
+                </div>
+            </div>
+        </div>
+
         <!-- Rooms Section -->
         <div id="roomsSection" class="max-w-7xl mx-auto px-4 pb-20">
-            <h2 class="text-3xl font-heading text-center mb-8 text-primary">Choose a Room & Play!</h2>
-            <p class="text-center text-gray-600 mb-8">Win 90% of pot | Only 10% platform fee</p>
+            <h2 class="text-3xl font-heading text-center mb-8 text-primary dark:text-white">Choose a Room & Play!</h2>
+            
+            <!-- Filter System -->
+            <div class="flex flex-wrap gap-4 mb-8 justify-center">
+                <select id="gameTypeFilter" class="p-3 border rounded-xl dark:bg-gray-700 dark:text-white">
+                    <option value="all">All Game Types</option>
+                    <option value="solo">Solo</option>
+                    <option value="duo">Duo</option>
+                    <option value="squad">Squad</option>
+                </select>
+                <select id="entryFeeFilter" class="p-3 border rounded-xl dark:bg-gray-700 dark:text-white">
+                    <option value="all">All Entry Fees</option>
+                    <option value="10">₹10</option>
+                    <option value="20">₹20</option>
+                    <option value="50">₹50</option>
+                    <option value="100">₹100+</option>
+                </select>
+                <button onclick="applyFilters()" class="bg-primary text-white px-6 py-3 rounded-xl font-bold hover:bg-secondary transition">
+                    Apply Filters
+                </button>
+            </div>
+
+            <p class="text-center text-gray-600 dark:text-gray-400 mb-8">Win 90% of pot | Only 10% platform fee</p>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <!-- 1v1 & 4v4 Rooms -->
-                <div class="room-card bg-white p-4 rounded-2xl shadow-lg card-hover cursor-pointer" onclick="joinRoom(10, '1v1')">
+                <div class="room-card bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-lg card-hover cursor-pointer" onclick="joinRoom(10, '1v1')">
                     <div class="text-center">
                         <i class="fas fa-gamepad text-4xl text-secondary mb-2 dice-roll"></i>
-                        <p class="text-2xl font-bold text-primary">₹10</p>
-                        <p class="text-xs text-gray-600">Entry Fee</p>
+                        <p class="text-2xl font-bold text-primary dark:text-white">₹10</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">Entry Fee</p>
                         <p class="text-md font-bold text-green-600 mt-1">Win ₹18</p>
-                        <p class="text-xs text-gray-500 mt-1">1v1 | 4v4</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">1v1 | 4v4</p>
                     </div>
                 </div>
-                <div class="room-card bg-white p-4 rounded-2xl shadow-lg card-hover cursor-pointer" onclick="joinRoom(20, '1v1')">
+                <div class="room-card bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-lg card-hover cursor-pointer" onclick="joinRoom(20, '1v1')">
                     <div class="text-center">
                         <i class="fas fa-gamepad text-4xl text-secondary mb-2 dice-roll"></i>
-                        <p class="text-2xl font-bold text-primary">₹20</p>
-                        <p class="text-xs text-gray-600">Entry Fee</p>
+                        <p class="text-2xl font-bold text-primary dark:text-white">₹20</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">Entry Fee</p>
                         <p class="text-md font-bold text-green-600 mt-1">Win ₹36</p>
-                        <p class="text-xs text-gray-500 mt-1">1v1 | 4v4</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">1v1 | 4v4</p>
                     </div>
                 </div>
-                <div class="room-card bg-white p-4 rounded-2xl shadow-lg card-hover cursor-pointer" onclick="joinRoom(30, '1v1')">
+                <div class="room-card bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-lg card-hover cursor-pointer" onclick="joinRoom(30, '1v1')">
                     <div class="text-center">
                         <i class="fas fa-gamepad text-4xl text-secondary mb-2 dice-roll"></i>
-                        <p class="text-2xl font-bold text-primary">₹30</p>
-                        <p class="text-xs text-gray-600">Entry Fee</p>
+                        <p class="text-2xl font-bold text-primary dark:text-white">₹30</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">Entry Fee</p>
                         <p class="text-md font-bold text-green-600 mt-1">Win ₹54</p>
-                        <p class="text-xs text-gray-500 mt-1">1v1 | 4v4</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">1v1 | 4v4</p>
                     </div>
                 </div>
-                <div class="room-card bg-white p-4 rounded-2xl shadow-lg card-hover cursor-pointer" onclick="joinRoom(50, '1v1')">
+                <div class="room-card bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-lg card-hover cursor-pointer" onclick="joinRoom(50, '1v1')">
                     <div class="text-center">
                         <i class="fas fa-gamepad text-4xl text-secondary mb-2 dice-roll"></i>
-                        <p class="text-2xl font-bold text-primary">₹50</p>
-                        <p class="text-xs text-gray-600">Entry Fee</p>
+                        <p class="text-2xl font-bold text-primary dark:text-white">₹50</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">Entry Fee</p>
                         <p class="text-md font-bold text-green-600 mt-1">Win ₹90</p>
-                        <p class="text-xs text-gray-500 mt-1">1v1 | 4v4</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">1v1 | 4v4</p>
                     </div>
                 </div>
-                <div class="room-card bg-white p-4 rounded-2xl shadow-lg card-hover cursor-pointer" onclick="joinRoom(100, '1v1')">
+                <div class="room-card bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-lg card-hover cursor-pointer" onclick="joinRoom(100, '1v1')">
                     <div class="text-center">
                         <i class="fas fa-gamepad text-4xl text-secondary mb-2 dice-roll"></i>
-                        <p class="text-2xl font-bold text-primary">₹100</p>
-                        <p class="text-xs text-gray-600">Entry Fee</p>
+                        <p class="text-2xl font-bold text-primary dark:text-white">₹100</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">Entry Fee</p>
                         <p class="text-md font-bold text-green-600 mt-1">Win ₹180</p>
-                        <p class="text-xs text-gray-500 mt-1">1v1 | 4v4</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">1v1 | 4v4</p>
                     </div>
                 </div>
-                <div class="room-card bg-white p-4 rounded-2xl shadow-lg card-hover cursor-pointer" onclick="joinRoom(200, '1v1')">
+                <div class="room-card bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-lg card-hover cursor-pointer" onclick="joinRoom(200, '1v1')">
                     <div class="text-center">
                         <i class="fas fa-gamepad text-4xl text-secondary mb-2 dice-roll"></i>
-                        <p class="text-2xl font-bold text-primary">₹200</p>
-                        <p class="text-xs text-gray-600">Entry Fee</p>
+                        <p class="text-2xl font-bold text-primary dark:text-white">₹200</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">Entry Fee</p>
                         <p class="text-md font-bold text-green-600 mt-1">Win ₹360</p>
-                        <p class="text-xs text-gray-500 mt-1">1v1 | 4v4</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">1v1 | 4v4</p>
                     </div>
                 </div>
-                <div class="room-card bg-white p-4 rounded-2xl shadow-lg card-hover cursor-pointer" onclick="joinRoom(500, '1v1')">
+                <div class="room-card bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-lg card-hover cursor-pointer" onclick="joinRoom(500, '1v1')">
                     <div class="text-center">
                         <i class="fas fa-gamepad text-4xl text-secondary mb-2 dice-roll"></i>
-                        <p class="text-2xl font-bold text-primary">₹500</p>
-                        <p class="text-xs text-gray-600">Entry Fee</p>
+                        <p class="text-2xl font-bold text-primary dark:text-white">₹500</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">Entry Fee</p>
                         <p class="text-md font-bold text-green-600 mt-1">Win ₹900</p>
-                        <p class="text-xs text-gray-500 mt-1">1v1 | 4v4</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">1v1 | 4v4</p>
                     </div>
                 </div>
-                <div class="room-card bg-white p-4 rounded-2xl shadow-lg card-hover cursor-pointer" onclick="joinRoom(1000, '1v1')">
+                <div class="room-card bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-lg card-hover cursor-pointer" onclick="joinRoom(1000, '1v1')">
                     <div class="text-center">
                         <i class="fas fa-crown text-4xl text-yellow-500 mb-2"></i>
-                        <p class="text-2xl font-bold text-primary">₹1,000</p>
-                        <p class="text-xs text-gray-600">VIP Room</p>
+                        <p class="text-2xl font-bold text-primary dark:text-white">₹1,000</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">VIP Room</p>
                         <p class="text-md font-bold text-green-600 mt-1">Win ₹1,800</p>
-                        <p class="text-xs text-gray-500 mt-1">1v1 | 4v4</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">1v1 | 4v4</p>
                     </div>
                 </div>
             </div>
 
             <!-- Erangel / Classic Mode -->
             <div class="mt-12">
-                <h2 class="text-3xl font-heading text-center mb-6 text-primary">Erangel / Classic Mode</h2>
-                <p class="text-center text-gray-600 mb-6">Per Kill = 50% of Entry Fee</p>
+                <h2 class="text-3xl font-heading text-center mb-6 text-primary dark:text-white">Erangel / Classic Mode</h2>
+                <p class="text-center text-gray-600 dark:text-gray-400 mb-6">Per Kill = 50% of Entry Fee</p>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <div class="room-card bg-gradient-to-br from-blue-500 to-purple-600 text-white p-4 rounded-2xl shadow-lg card-hover cursor-pointer" onclick="joinErangel(10)">
                         <div class="text-center">
@@ -521,20 +671,80 @@
             </div>
         </div>
 
+        <!-- Spin Wheel Section -->
+        <div id="spinwheelSection" class="hidden max-w-4xl mx-auto px-4 py-10">
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-xl">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-3xl font-heading text-primary dark:text-white">🎡 Spin & Win</h2>
+                    <button onclick="showSection('rooms')" class="bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition">
+                        <i class="fas fa-arrow-left mr-2"></i>Back to Dashboard
+                    </button>
+                </div>
+                
+                <div class="text-center">
+                    <div class="bg-gradient-to-r from-purple-500 to-pink-500 rounded-full w-64 h-64 mx-auto mb-6 flex items-center justify-center relative">
+                        <div id="wheel" class="w-60 h-60 rounded-full bg-white relative">
+                            <!-- Wheel segments will be generated by JavaScript -->
+                        </div>
+                        <div class="absolute top-1/2 right-0 transform -translate-y-1/2 w-8 h-8 bg-red-500 rounded-full"></div>
+                    </div>
+                    
+                    <button onclick="spinWheel()" class="bg-green-500 text-white px-8 py-3 rounded-full text-lg font-bold hover:bg-green-600 transition">
+                        <i class="fas fa-sync-alt mr-2"></i>Spin Wheel (Cost: ₹10)
+                    </button>
+                    
+                    <div id="spinResult" class="mt-4 text-xl font-bold text-primary dark:text-white"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Leaderboard Section -->
+        <div id="leaderboardSection" class="hidden max-w-6xl mx-auto px-4 py-10">
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-xl">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-3xl font-heading text-primary dark:text-white">🏆 Leaderboard</h2>
+                    <button onclick="showSection('rooms')" class="bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition">
+                        <i class="fas fa-arrow-left mr-2"></i>Back to Dashboard
+                    </button>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-light dark:bg-gray-700 p-6 rounded-2xl">
+                        <h3 class="text-xl font-bold text-primary dark:text-white mb-4">🎯 Top Players</h3>
+                        <div id="topPlayers" class="space-y-3">
+                            <!-- Top players will be loaded here -->
+                        </div>
+                    </div>
+                    <div class="bg-light dark:bg-gray-700 p-6 rounded-2xl">
+                        <h3 class="text-xl font-bold text-primary dark:text-white mb-4">💰 Top Depositors</h3>
+                        <div id="topDepositors" class="space-y-3">
+                            <!-- Top depositors will be loaded here -->
+                        </div>
+                    </div>
+                    <div class="bg-light dark:bg-gray-700 p-6 rounded-2xl">
+                        <h3 class="text-xl font-bold text-primary dark:text-white mb-4">👥 Top Referrers</h3>
+                        <div id="topReferrers" class="space-y-3">
+                            <!-- Top referrers will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Profile Section -->
         <div id="profileSection" class="hidden max-w-4xl mx-auto px-4 py-10">
-            <div class="bg-white p-8 rounded-3xl shadow-xl">
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-xl">
                 <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-3xl font-heading text-primary">Your Profile</h2>
+                    <h2 class="text-3xl font-heading text-primary dark:text-white">Your Profile</h2>
                     <button onclick="showSection('rooms')" class="bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition">
                         <i class="fas fa-arrow-left mr-2"></i>Back to Dashboard
                     </button>
                 </div>
                 <div class="space-y-6">
                     <div class="grid md:grid-cols-2 gap-6">
-                        <div class="p-6 bg-light rounded-2xl">
-                            <h3 class="text-xl font-bold text-primary mb-4">Personal Info</h3>
-                            <div class="space-y-3">
+                        <div class="p-6 bg-light dark:bg-gray-700 rounded-2xl">
+                            <h3 class="text-xl font-bold text-primary dark:text-white mb-4">Personal Info</h3>
+                            <div class="space-y-3 dark:text-gray-300">
                                 <p><strong>Name:</strong> <span id="profileName">-</span></p>
                                 <p><strong>Email:</strong> <span id="profileEmail">-</span></p>
                                 <p><strong>Phone:</strong> <span id="profilePhone">-</span></p>
@@ -542,9 +752,9 @@
                                 <p><strong>Joined Date:</strong> <span id="profileJoinDate">-</span></p>
                             </div>
                         </div>
-                        <div class="p-6 bg-light rounded-2xl">
-                            <h3 class="text-xl font-bold text-primary mb-4">Account Stats</h3>
-                            <div class="space-y-3">
+                        <div class="p-6 bg-light dark:bg-gray-700 rounded-2xl">
+                            <h3 class="text-xl font-bold text-primary dark:text-white mb-4">Account Stats</h3>
+                            <div class="space-y-3 dark:text-gray-300">
                                 <p><strong>Wallet Balance:</strong> ₹<span id="profileBalance">0</span></p>
                                 <p><strong>Total Games Played:</strong> <span id="profileGames">0</span></p>
                                 <p><strong>Total Winnings:</strong> ₹<span id="profileWinnings">0</span></p>
@@ -558,31 +768,31 @@
 
         <!-- History Section -->
         <div id="historySection" class="hidden max-w-6xl mx-auto px-4 py-10">
-            <div class="bg-white p-8 rounded-3xl shadow-xl">
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-xl">
                 <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-3xl font-heading text-primary">Your History</h2>
+                    <h2 class="text-3xl font-heading text-primary dark:text-white">Your History</h2>
                     <button onclick="showSection('rooms')" class="bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition">
                         <i class="fas fa-arrow-left mr-2"></i>Back to Dashboard
                     </button>
                 </div>
                 <div class="space-y-6">
-                    <div class="p-6 bg-light rounded-2xl">
-                        <h3 class="text-xl font-bold text-primary mb-4">Recent Transactions</h3>
+                    <div class="p-6 bg-light dark:bg-gray-700 rounded-2xl">
+                        <h3 class="text-xl font-bold text-primary dark:text-white mb-4">Recent Transactions</h3>
                         <div id="transactionHistory" class="space-y-3">
-                            <p class="text-center text-gray-500">No transactions yet</p>
+                            <p class="text-center text-gray-500 dark:text-gray-400">No transactions yet</p>
                         </div>
                     </div>
                     <div class="grid md:grid-cols-2 gap-6">
-                        <div class="p-6 bg-light rounded-2xl">
-                            <h3 class="text-xl font-bold text-primary mb-4">Game History</h3>
+                        <div class="p-6 bg-light dark:bg-gray-700 rounded-2xl">
+                            <h3 class="text-xl font-bold text-primary dark:text-white mb-4">Game History</h3>
                             <div id="gameHistory" class="space-y-3">
-                                <p class="text-center text-gray-500">No games played yet</p>
+                                <p class="text-center text-gray-500 dark:text-gray-400">No games played yet</p>
                             </div>
                         </div>
-                        <div class="p-6 bg-light rounded-2xl">
-                            <h3 class="text-xl font-bold text-primary mb-4">Withdrawal History</h3>
+                        <div class="p-6 bg-light dark:bg-gray-700 rounded-2xl">
+                            <h3 class="text-xl font-bold text-primary dark:text-white mb-4">Withdrawal History</h3>
                             <div id="withdrawalHistory" class="space-y-3">
-                                <p class="text-center text-gray-500">No withdrawals yet</p>
+                                <p class="text-center text-gray-500 dark:text-gray-400">No withdrawals yet</p>
                             </div>
                         </div>
                     </div>
@@ -592,9 +802,9 @@
 
         <!-- Referral Section -->
         <div id="referralSection" class="hidden max-w-4xl mx-auto px-4 py-10">
-            <div class="bg-white p-8 rounded-3xl shadow-xl">
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-xl">
                 <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-3xl font-heading text-primary">Refer & Earn</h2>
+                    <h2 class="text-3xl font-heading text-primary dark:text-white">Refer & Earn</h2>
                     <button onclick="showSection('rooms')" class="bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition">
                         <i class="fas fa-arrow-left mr-2"></i>Back to Dashboard
                     </button>
@@ -611,9 +821,9 @@
                         </div>
                     </div>
                     
-                    <div class="bg-light p-6 rounded-2xl">
-                        <h3 class="text-xl font-bold text-primary mb-4">💰 How it Works</h3>
-                        <div class="space-y-3 text-sm">
+                    <div class="bg-light dark:bg-gray-700 p-6 rounded-2xl">
+                        <h3 class="text-xl font-bold text-primary dark:text-white mb-4">💰 How it Works</h3>
+                        <div class="space-y-3 text-sm dark:text-gray-300">
                             <p>✅ <strong>2% Commission</strong> on every direct member's deposit</p>
                             <p>✅ Share your unique referral code</p>
                             <p>✅ Earn when your friends deposit money</p>
@@ -622,12 +832,12 @@
                     </div>
                 </div>
 
-                <div class="bg-yellow-50 border border-yellow-200 rounded-2xl p-6 mb-6">
-                    <h3 class="text-xl font-bold text-primary mb-4">📤 Your Referral Code</h3>
+                <div class="bg-yellow-50 dark:bg-yellow-900 border border-yellow-200 dark:border-yellow-700 rounded-2xl p-6 mb-6">
+                    <h3 class="text-xl font-bold text-primary dark:text-white mb-4">📤 Your Referral Code</h3>
                     <div class="text-center mb-4">
-                        <div class="bg-white p-4 rounded-xl border-2 border-primary inline-block">
-                            <p class="text-3xl font-bold text-primary" id="referralCodeDisplay">Loading...</p>
-                            <p class="text-sm text-gray-600 mt-2">Share this code with friends</p>
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-xl border-2 border-primary inline-block">
+                            <p class="text-3xl font-bold text-primary dark:text-white" id="referralCodeDisplay">Loading...</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">Share this code with friends</p>
                         </div>
                     </div>
                     <div class="text-center">
@@ -635,13 +845,13 @@
                             <i class="fas fa-copy mr-2"></i>Copy Referral Code
                         </button>
                     </div>
-                    <p class="text-sm text-gray-600 text-center mt-3">Share this code with friends! When they sign up using your code, you get 2% commission on their deposits!</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 text-center mt-3">Share this code with friends! When they sign up using your code, you get 2% commission on their deposits!</p>
                 </div>
 
-                <div class="bg-light p-6 rounded-2xl">
-                    <h3 class="text-xl font-bold text-primary mb-4">👥 Your Referrals & Commission History</h3>
+                <div class="bg-light dark:bg-gray-700 p-6 rounded-2xl">
+                    <h3 class="text-xl font-bold text-primary dark:text-white mb-4">👥 Your Referrals & Commission History</h3>
                     <div id="referralList" class="space-y-3">
-                        <p class="text-center text-gray-500">No referrals yet. Share your code to start earning!</p>
+                        <p class="text-center text-gray-500 dark:text-gray-400">No referrals yet. Share your code to start earning!</p>
                     </div>
                 </div>
             </div>
@@ -649,28 +859,28 @@
 
         <!-- DEPOSIT SECTION -->
         <div id="depositSection" class="hidden max-w-4xl mx-auto px-4 py-10">
-            <div class="bg-white p-8 rounded-3xl shadow-xl">
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-xl">
                 <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-3xl font-heading text-primary text-center">Deposit Money</h2>
+                    <h2 class="text-3xl font-heading text-primary dark:text-white text-center">Deposit Money</h2>
                     <button onclick="showSection('rooms')" class="bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition">
                         <i class="fas fa-arrow-left mr-2"></i>Back to Dashboard
                     </button>
                 </div>
                 
                 <!-- UPI ID Display -->
-                <div class="mb-6 p-4 bg-yellow-50 rounded-xl border border-yellow-200">
-                    <p class="text-center font-bold text-lg">Send payment to: <span class="text-primary">millnerkaptan01@fam</span></p>
-                    <p class="text-center text-sm mt-2">After payment, send screenshot to confirm</p>
+                <div class="mb-6 p-4 bg-yellow-50 dark:bg-yellow-900 rounded-xl border border-yellow-200 dark:border-yellow-700">
+                    <p class="text-center font-bold text-lg dark:text-white">Send payment to: <span class="text-primary">millnerkaptan01@fam</span></p>
+                    <p class="text-center text-sm mt-2 dark:text-gray-300">After payment, send screenshot to confirm</p>
                 </div>
 
                 <!-- QR Code Section -->
                 <div class="mb-6">
-                    <h3 class="text-xl font-bold text-primary mb-4 text-center">Scan QR Code to Pay</h3>
+                    <h3 class="text-xl font-bold text-primary dark:text-white mb-4 text-center">Scan QR Code to Pay</h3>
                     
                     <!-- Current QR Code -->
                     <div id="currentQR" class="text-center mb-4">
                         <img src="https://i.ibb.co/0Q8L2J9/qr1.jpg" alt="QR Code 1" class="mx-auto border-4 border-primary rounded-xl w-64 h-64 object-contain bg-white p-4">
-                        <p class="text-sm text-gray-600 mt-2">QR Code 1 - UPI: millnerkaptan01@fam</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">QR Code 1 - UPI: millnerkaptan01@fam</p>
                     </div>
 
                     <!-- QR Change Button -->
@@ -681,7 +891,7 @@
                     </div>
                 </div>
 
-                <input type="number" id="depositAmount" placeholder="Enter Amount (min ₹10)" class="w-full p-4 border-2 border-secondary rounded-xl mb-4" min="10">
+                <input type="number" id="depositAmount" placeholder="Enter Amount (min ₹10)" class="w-full p-4 border-2 border-secondary rounded-xl mb-4 dark:bg-gray-700 dark:text-white" min="10">
                 <button onclick="sendDepositToWhatsApp()" class="w-full bg-green-500 text-white py-4 rounded-xl font-bold text-lg hover:opacity-90 transition">
                     Send Request on WhatsApp
                 </button>
@@ -690,25 +900,25 @@
 
         <!-- WITHDRAW SECTION -->
         <div id="withdrawSection" class="hidden max-w-4xl mx-auto px-4 py-10">
-            <div class="bg-white p-8 rounded-3xl shadow-xl">
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-xl">
                 <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-3xl font-heading text-primary text-center">Withdraw Money</h2>
+                    <h2 class="text-3xl font-heading text-primary dark:text-white text-center">Withdraw Money</h2>
                     <button onclick="showSection('rooms')" class="bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition">
                         <i class="fas fa-arrow-left mr-2"></i>Back to Dashboard
                     </button>
                 </div>
-                <input type="number" id="withdrawAmount" placeholder="Enter Amount (min ₹100)" class="w-full p-4 border-2 border-secondary rounded-xl mb-4" min="100">
-                <select id="withdrawMethod" class="w-full p-4 border-2 border-secondary rounded-xl mb-4" onchange="toggleWithdrawFields()">
+                <input type="number" id="withdrawAmount" placeholder="Enter Amount (min ₹100)" class="w-full p-4 border-2 border-secondary rounded-xl mb-4 dark:bg-gray-700 dark:text-white" min="100">
+                <select id="withdrawMethod" class="w-full p-4 border-2 border-secondary rounded-xl mb-4 dark:bg-gray-700 dark:text-white" onchange="toggleWithdrawFields()">
                     <option value="upi">UPI</option>
                     <option value="bank">Bank Transfer</option>
                 </select>
                 <div id="upiField" class="hidden mb-4">
-                    <input type="text" id="upiId" placeholder="Enter UPI ID" class="w-full p-4 border-2 border-secondary rounded-xl">
+                    <input type="text" id="upiId" placeholder="Enter UPI ID" class="w-full p-4 border-2 border-secondary rounded-xl dark:bg-gray-700 dark:text-white">
                 </div>
                 <div id="bankFields" class="hidden space-y-2">
-                    <input type="text" id="accName" placeholder="Account Holder Name" class="w-full p-4 border-2 border-secondary rounded-xl">
-                    <input type="text" id="accNumber" placeholder="Account Number" class="w-full p-4 border-2 border-secondary rounded-xl">
-                    <input type="text" id="ifsc" placeholder="IFSC Code" class="w-full p-4 border-2 border-secondary rounded-xl">
+                    <input type="text" id="accName" placeholder="Account Holder Name" class="w-full p-4 border-2 border-secondary rounded-xl dark:bg-gray-700 dark:text-white">
+                    <input type="text" id="accNumber" placeholder="Account Number" class="w-full p-4 border-2 border-secondary rounded-xl dark:bg-gray-700 dark:text-white">
+                    <input type="text" id="ifsc" placeholder="IFSC Code" class="w-full p-4 border-2 border-secondary rounded-xl dark:bg-gray-700 dark:text-white">
                 </div>
                 <button onclick="sendWithdrawToWhatsApp()" class="w-full bg-red-500 text-white py-4 rounded-xl font-bold hover:opacity-90 transition mt-4">
                     Submit Request on WhatsApp
@@ -718,24 +928,24 @@
 
         <!-- Admin Panel -->
         <div id="adminSection" class="hidden max-w-6xl mx-auto px-4 py-16">
-            <div class="bg-white rounded-3xl shadow-xl p-8">
+            <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-8">
                 <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-3xl font-heading text-primary text-center">Admin Panel</h2>
+                    <h2 class="text-3xl font-heading text-primary dark:text-white text-center">Admin Panel</h2>
                     <button onclick="showSection('rooms')" class="bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition">
                         <i class="fas fa-arrow-left mr-2"></i>Back to Dashboard
                     </button>
                 </div>
-                <div class="mb-6 p-4 bg-light rounded-xl text-center">
-                    <p class="text-xl font-bold">Total Registered Users: <span id="totalUsers">0</span></p>
+                <div class="mb-6 p-4 bg-light dark:bg-gray-700 rounded-xl text-center">
+                    <p class="text-xl font-bold dark:text-white">Total Registered Users: <span id="totalUsers">0</span></p>
                 </div>
                 
                 <!-- User Stats Update Section -->
-                <div class="mb-6 bg-light p-6 rounded-2xl">
-                    <h3 class="text-xl font-bold mb-4">Update User Stats</h3>
+                <div class="mb-6 bg-light dark:bg-gray-700 p-6 rounded-2xl">
+                    <h3 class="text-xl font-bold mb-4 dark:text-white">Update User Stats</h3>
                     <div class="grid md:grid-cols-4 gap-4 mb-4">
-                        <input type="email" id="adminUserEmailStats" placeholder="User Email" class="p-3 border rounded-xl">
-                        <input type="number" id="adminUserWinnings" placeholder="Total Winnings" class="p-3 border rounded-xl">
-                        <input type="number" id="adminUserWithdrawals" placeholder="Total Withdrawals" class="p-3 border rounded-xl">
+                        <input type="email" id="adminUserEmailStats" placeholder="User Email" class="p-3 border rounded-xl dark:bg-gray-600 dark:text-white">
+                        <input type="number" id="adminUserWinnings" placeholder="Total Winnings" class="p-3 border rounded-xl dark:bg-gray-600 dark:text-white">
+                        <input type="number" id="adminUserWithdrawals" placeholder="Total Withdrawals" class="p-3 border rounded-xl dark:bg-gray-600 dark:text-white">
                         <button onclick="updateUserStats()" class="bg-purple-500 text-white px-4 py-3 rounded-xl font-bold hover:bg-purple-600 transition">
                             Update Stats
                         </button>
@@ -743,12 +953,12 @@
                 </div>
 
                 <!-- Referral Stats Update Section -->
-                <div class="mb-6 bg-light p-6 rounded-2xl">
-                    <h3 class="text-xl font-bold mb-4">Update Referral Stats</h3>
+                <div class="mb-6 bg-light dark:bg-gray-700 p-6 rounded-2xl">
+                    <h3 class="text-xl font-bold mb-4 dark:text-white">Update Referral Stats</h3>
                     <div class="grid md:grid-cols-4 gap-4 mb-4">
-                        <input type="email" id="adminUserEmailReferral" placeholder="User Email" class="p-3 border rounded-xl">
-                        <input type="number" id="adminUserReferrals" placeholder="Total Referrals" class="p-3 border rounded-xl">
-                        <input type="number" id="adminUserReferralEarnings" placeholder="Referral Earnings" class="p-3 border rounded-xl">
+                        <input type="email" id="adminUserEmailReferral" placeholder="User Email" class="p-3 border rounded-xl dark:bg-gray-600 dark:text-white">
+                        <input type="number" id="adminUserReferrals" placeholder="Total Referrals" class="p-3 border rounded-xl dark:bg-gray-600 dark:text-white">
+                        <input type="number" id="adminUserReferralEarnings" placeholder="Referral Earnings" class="p-3 border rounded-xl dark:bg-gray-600 dark:text-white">
                         <button onclick="updateReferralStats()" class="bg-blue-500 text-white px-4 py-3 rounded-xl font-bold hover:bg-blue-600 transition">
                             Update Referral
                         </button>
@@ -756,18 +966,18 @@
                 </div>
 
                 <div class="mb-6">
-                    <h3 class="text-xl font-bold mb-4">Add Funds to User</h3>
+                    <h3 class="text-xl font-bold mb-4 dark:text-white">Add Funds to User</h3>
                     <div class="flex gap-4 mb-4">
-                        <input type="email" id="adminUserEmail" placeholder="User Email" class="flex-1 p-3 border rounded-xl">
-                        <input type="number" id="adminFundAmount" placeholder="Amount" class="w-32 p-3 border rounded-xl">
+                        <input type="email" id="adminUserEmail" placeholder="User Email" class="flex-1 p-3 border rounded-xl dark:bg-gray-600 dark:text-white">
+                        <input type="number" id="adminFundAmount" placeholder="Amount" class="w-32 p-3 border rounded-xl dark:bg-gray-600 dark:text-white">
                         <button onclick="addFundToUser()" class="bg-green-500 text-white px-6 py-3 rounded-xl font-bold">Add Funds</button>
                     </div>
                 </div>
                 <div class="mb-6">
-                    <h3 class="text-xl font-bold mb-4">Deduct Funds from User</h3>
+                    <h3 class="text-xl font-bold mb-4 dark:text-white">Deduct Funds from User</h3>
                     <div class="flex gap-4 mb-4">
-                        <input type="email" id="adminUserEmailDeduct" placeholder="User Email" class="flex-1 p-3 border rounded-xl">
-                        <input type="number" id="adminDeductAmount" placeholder="Amount" class="w-32 p-3 border rounded-xl">
+                        <input type="email" id="adminUserEmailDeduct" placeholder="User Email" class="flex-1 p-3 border rounded-xl dark:bg-gray-600 dark:text-white">
+                        <input type="number" id="adminDeductAmount" placeholder="Amount" class="w-32 p-3 border rounded-xl dark:bg-gray-600 dark:text-white">
                         <button onclick="deductFundFromUser()" class="bg-red-500 text-white px-6 py-3 rounded-xl font-bold">Deduct Funds</button>
                     </div>
                 </div>
@@ -802,6 +1012,8 @@
         let users = [];
         let isAdmin = false;
         let currentQR = 1;
+        let isDarkMode = false;
+        let currentLanguage = 'english';
 
         // QR Codes Data - Proper QR codes
         const qrCodes = [
@@ -822,6 +1034,9 @@
             }
         ];
 
+        // Spin Wheel Prizes
+        const wheelPrizes = ['₹5', '₹10', '₹20', '₹5', '₹50', '₹5', '₹100', '₹5'];
+
         // Live Stats Data
         const transactions = [
             "Amit won ₹180 in 1v1 battle",
@@ -835,6 +1050,24 @@
             "Karan won ₹1800 in VIP",
             "Sonia deposited ₹2000"
         ];
+
+        // Multi-language support
+        const translations = {
+            english: {
+                welcome: "Welcome back,",
+                walletBalance: "Wallet Balance",
+                playNow: "Play Now & Win ₹500!",
+                joinTelegram: "Join Our Telegram Community",
+                referralBonus: "Get 2% Commission on Every Direct Member's Deposit!"
+            },
+            hindi: {
+                welcome: "वापसी पर स्वागत है,",
+                walletBalance: "वॉलेट बैलेंस",
+                playNow: "अभी खेलें और ₹500 जीतें!",
+                joinTelegram: "हमारे टेलीग्राम समुदाय में शामिल हों",
+                referralBonus: "हर सीधे सदस्य के डिपॉजिट पर 2% कमीशन पाएं!"
+            }
+        };
 
         // Initialize Live Stats
         function initializeLiveStats() {
@@ -867,14 +1100,147 @@
             ).join('');
         }
 
+        // Theme Toggle
+        function toggleTheme() {
+            isDarkMode = !isDarkMode;
+            document.body.classList.toggle('dark-mode', isDarkMode);
+            const themeIcon = document.querySelector('#themeToggle i');
+            themeIcon.className = isDarkMode ? 'fas fa-sun' : 'fas fa-moon';
+            localStorage.setItem('darkMode', isDarkMode);
+        }
+
+        // Language Toggle
+        function toggleLanguage() {
+            currentLanguage = currentLanguage === 'english' ? 'hindi' : 'english';
+            updateLanguage();
+            localStorage.setItem('language', currentLanguage);
+        }
+
+        function updateLanguage() {
+            const trans = translations[currentLanguage];
+            document.querySelector('button[onclick="showSignup()"]').textContent = trans.playNow;
+            // Update other texts as needed
+        }
+
         // QR Code Functions
         function changeQRCode() {
             currentQR = (currentQR % 3) + 1;
             const qrContainer = document.getElementById('currentQR');
             qrContainer.innerHTML = `
                 <img src="${qrCodes[currentQR-1].src}" alt="${qrCodes[currentQR-1].label}" class="mx-auto border-4 border-primary rounded-xl w-64 h-64 object-contain bg-white p-4">
-                <p class="text-sm text-gray-600 mt-2">${qrCodes[currentQR-1].label}</p>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">${qrCodes[currentQR-1].label}</p>
             `;
+        }
+
+        // Spin Wheel Function
+        function spinWheel() {
+            if (!currentUser) {
+                alert('Please login first!');
+                return;
+            }
+            
+            if (currentUser.balance < 10) {
+                alert('Insufficient balance! Need ₹10 to spin.');
+                return;
+            }
+
+            currentUser.balance -= 10;
+            updateBalance();
+
+            const wheel = document.getElementById('wheel');
+            const resultDiv = document.getElementById('spinResult');
+            
+            wheel.classList.add('spin-wheel');
+            resultDiv.textContent = 'Spinning...';
+
+            setTimeout(() => {
+                const randomPrize = wheelPrizes[Math.floor(Math.random() * wheelPrizes.length)];
+                const prizeAmount = parseInt(randomPrize.replace('₹', ''));
+                
+                currentUser.balance += prizeAmount;
+                updateBalance();
+                
+                resultDiv.textContent = `Congratulations! You won ${randomPrize}!`;
+                wheel.classList.remove('spin-wheel');
+
+                // Add confetti effect
+                createConfetti();
+                
+                saveUsersToCloud();
+            }, 2000);
+        }
+
+        function createConfetti() {
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.animationDelay = Math.random() * 5 + 's';
+                confetti.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                document.body.appendChild(confetti);
+
+                setTimeout(() => {
+                    confetti.remove();
+                }, 5000);
+            }
+        }
+
+        // Daily Login Bonus
+        function claimDailyBonus() {
+            if (!currentUser) return;
+
+            const today = new Date().toDateString();
+            const lastBonusDate = localStorage.getItem(`lastBonus_${currentUser.email}`);
+
+            if (lastBonusDate === today) {
+                alert('You have already claimed your daily bonus today!');
+                return;
+            }
+
+            const bonusAmount = Math.floor(Math.random() * 5) + 1; // ₹1 to ₹5
+            currentUser.balance += bonusAmount;
+            updateBalance();
+
+            localStorage.setItem(`lastBonus_${currentUser.email}`, today);
+            alert(`🎉 Daily bonus claimed! You received ₹${bonusAmount}`);
+            saveUsersToCloud();
+        }
+
+        // Filter System
+        function applyFilters() {
+            const gameType = document.getElementById('gameTypeFilter').value;
+            const entryFee = document.getElementById('entryFeeFilter').value;
+            
+            // Implement filter logic here
+            alert(`Filters applied: Game Type - ${gameType}, Entry Fee - ${entryFee}`);
+        }
+
+        // Leaderboard Functions
+        function loadLeaderboard() {
+            const topPlayers = users.sort((a, b) => (b.totalWinnings || 0) - (a.totalWinnings || 0)).slice(0, 5);
+            const topDepositors = users.sort((a, b) => (b.totalDeposits || 0) - (a.totalDeposits || 0)).slice(0, 5);
+            const topReferrers = users.sort((a, b) => (b.referralEarnings || 0) - (a.referralEarnings || 0)).slice(0, 5);
+
+            document.getElementById('topPlayers').innerHTML = topPlayers.map((user, index) => `
+                <div class="flex justify-between items-center p-2 bg-white dark:bg-gray-600 rounded">
+                    <span>${index + 1}. ${user.username}</span>
+                    <span class="text-green-600 font-bold">₹${user.totalWinnings || 0}</span>
+                </div>
+            `).join('');
+
+            document.getElementById('topDepositors').innerHTML = topDepositors.map((user, index) => `
+                <div class="flex justify-between items-center p-2 bg-white dark:bg-gray-600 rounded">
+                    <span>${index + 1}. ${user.username}</span>
+                    <span class="text-blue-600 font-bold">₹${user.totalDeposits || 0}</span>
+                </div>
+            `).join('');
+
+            document.getElementById('topReferrers').innerHTML = topReferrers.map((user, index) => `
+                <div class="flex justify-between items-center p-2 bg-white dark:bg-gray-600 rounded">
+                    <span>${index + 1}. ${user.username}</span>
+                    <span class="text-purple-600 font-bold">₹${user.referralEarnings || 0}</span>
+                </div>
+            `).join('');
         }
 
         // FIXED REFERRAL SYSTEM - Only Code, No Link
@@ -915,22 +1281,22 @@
                 referralList.innerHTML = referrals.map(ref => {
                     const commissionHistory = ref.commissionHistory || [];
                     return `
-                        <div class="p-4 bg-white rounded-lg border">
+                        <div class="p-4 bg-white dark:bg-gray-600 rounded-lg border">
                             <div class="flex justify-between items-center mb-2">
                                 <div>
-                                    <p class="font-bold">${ref.username}</p>
-                                    <p class="text-sm text-gray-600">Joined: ${ref.joinDate}</p>
+                                    <p class="font-bold dark:text-white">${ref.username}</p>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Joined: ${ref.joinDate}</p>
                                 </div>
                                 <div class="text-right">
                                     <p class="text-green-600 font-bold">+₹${ref.referralBonus || 0}</p>
-                                    <p class="text-xs text-gray-600">Total Commission</p>
+                                    <p class="text-xs text-gray-600 dark:text-gray-400">Total Commission</p>
                                 </div>
                             </div>
                             ${commissionHistory.length > 0 ? `
-                                <div class="mt-2 pt-2 border-t">
-                                    <p class="text-sm font-bold text-primary">Commission History:</p>
+                                <div class="mt-2 pt-2 border-t border-gray-300 dark:border-gray-500">
+                                    <p class="text-sm font-bold text-primary dark:text-white">Commission History:</p>
                                     ${commissionHistory.map(comm => `
-                                        <p class="text-xs text-gray-600">₹${comm.amount} from ${comm.type} - ${comm.date}</p>
+                                        <p class="text-xs text-gray-600 dark:text-gray-400">₹${comm.amount} from ${comm.type} - ${comm.date}</p>
                                     `).join('')}
                                 </div>
                             ` : ''}
@@ -938,7 +1304,7 @@
                     `;
                 }).join('');
             } else {
-                referralList.innerHTML = '<p class="text-center text-gray-500">No referrals yet. Share your code to start earning!</p>';
+                referralList.innerHTML = '<p class="text-center text-gray-500 dark:text-gray-400">No referrals yet. Share your code to start earning!</p>';
             }
         }
 
@@ -1300,6 +1666,9 @@
             if (section === 'referral') {
                 loadReferralSection();
             }
+            if (section === 'leaderboard') {
+                loadLeaderboard();
+            }
             if (section === 'withdraw') toggleWithdrawFields();
             toggleMenu();
         }
@@ -1329,37 +1698,37 @@
                 // Transaction History
                 if (currentUser.transactionHistory && currentUser.transactionHistory.length > 0) {
                     transactionHistory.innerHTML = currentUser.transactionHistory.map(transaction => 
-                        `<div class="p-3 bg-white rounded-lg border">
-                            <p><strong>${transaction.type}</strong> - ₹${transaction.amount}</p>
-                            <p class="text-sm text-gray-600">${transaction.date}</p>
+                        `<div class="p-3 bg-white dark:bg-gray-600 rounded-lg border">
+                            <p class="dark:text-white"><strong>${transaction.type}</strong> - ₹${transaction.amount}</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">${transaction.date}</p>
                         </div>`
                     ).join('');
                 } else {
-                    transactionHistory.innerHTML = '<p class="text-center text-gray-500">No transactions yet</p>';
+                    transactionHistory.innerHTML = '<p class="text-center text-gray-500 dark:text-gray-400">No transactions yet</p>';
                 }
 
                 // Game History
                 if (currentUser.gamesPlayed > 0) {
                     gameHistory.innerHTML = `
-                        <div class="p-3 bg-white rounded-lg border">
-                            <p><strong>Total Games:</strong> ${currentUser.gamesPlayed}</p>
-                            <p><strong>Total Winnings:</strong> ₹${currentUser.totalWinnings || 0}</p>
+                        <div class="p-3 bg-white dark:bg-gray-600 rounded-lg border">
+                            <p class="dark:text-white"><strong>Total Games:</strong> ${currentUser.gamesPlayed}</p>
+                            <p class="dark:text-white"><strong>Total Winnings:</strong> ₹${currentUser.totalWinnings || 0}</p>
                         </div>
                     `;
                 } else {
-                    gameHistory.innerHTML = '<p class="text-center text-gray-500">No games played yet</p>';
+                    gameHistory.innerHTML = '<p class="text-center text-gray-500 dark:text-gray-400">No games played yet</p>';
                 }
 
                 // Withdrawal History
                 if (currentUser.withdrawals && currentUser.withdrawals.length > 0) {
                     withdrawalHistory.innerHTML = currentUser.withdrawals.map(withdrawal => 
-                        `<div class="p-3 bg-white rounded-lg border">
-                            <p><strong>Withdrawal:</strong> ₹${withdrawal.amount}</p>
-                            <p class="text-sm text-gray-600">${withdrawal.date} - ${withdrawal.status || 'Pending'}</p>
+                        `<div class="p-3 bg-white dark:bg-gray-600 rounded-lg border">
+                            <p class="dark:text-white"><strong>Withdrawal:</strong> ₹${withdrawal.amount}</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">${withdrawal.date} - ${withdrawal.status || 'Pending'}</p>
                         </div>`
                     ).join('');
                 } else {
-                    withdrawalHistory.innerHTML = '<p class="text-center text-gray-500">No withdrawals yet</p>';
+                    withdrawalHistory.innerHTML = '<p class="text-center text-gray-500 dark:text-gray-400">No withdrawals yet</p>';
                 }
             }
         }
@@ -1374,21 +1743,21 @@
             container.innerHTML = '';
             
             if (users.length === 0) {
-                container.innerHTML = '<p class="text-center p-4">No users registered yet</p>';
+                container.innerHTML = '<p class="text-center p-4 dark:text-white">No users registered yet</p>';
                 return;
             }
             
             users.forEach(user => {
                 const div = document.createElement('div');
-                div.className = 'p-4 border rounded-xl bg-gray-50';
+                div.className = 'p-4 border rounded-xl bg-gray-50 dark:bg-gray-700';
                 div.innerHTML = `
-                    <p><strong>${user.username}</strong> (${user.email})</p>
-                    <p>Phone: ${user.phone} | Balance: ₹${user.balance}</p>
-                    <p class="text-sm text-gray-600">Winnings: ₹${user.totalWinnings || 0} | Withdrawals: ₹${user.totalWithdrawals || 0}</p>
-                    <p class="text-sm text-gray-600">Referrals: ${user.totalReferrals || 0} | Ref Earnings: ₹${user.referralEarnings || 0}</p>
-                    <p class="text-sm text-gray-600">Joined: ${user.joinDate}</p>
+                    <p class="dark:text-white"><strong>${user.username}</strong> (${user.email})</p>
+                    <p class="dark:text-gray-300">Phone: ${user.phone} | Balance: ₹${user.balance}</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Winnings: ₹${user.totalWinnings || 0} | Withdrawals: ₹${user.totalWithdrawals || 0}</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Referrals: ${user.totalReferrals || 0} | Ref Earnings: ₹${user.referralEarnings || 0}</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Joined: ${user.joinDate}</p>
                     <div class="flex gap-2 mt-2">
-                        <input type="number" placeholder="Amount" class="p-2 border rounded w-24" min="1">
+                        <input type="number" placeholder="Amount" class="p-2 border rounded w-24 dark:bg-gray-600 dark:text-white" min="1">
                         <button onclick="addFund('${user.email}', this.previousElementSibling.value)" class="bg-green-500 text-white px-3 py-1 rounded text-sm">Add</button>
                         <button onclick="deductFund('${user.email}', this.parentElement.querySelector('input').value)" class="bg-red-500 text-white px-3 py-1 rounded text-sm">Deduct</button>
                     </div>
@@ -1497,6 +1866,18 @@
             await initializeDatabase();
             initializeLiveStats(); // Start live stats
             checkReferral(); // Check for referral codes
+            
+            // Load theme preference
+            isDarkMode = localStorage.getItem('darkMode') === 'true';
+            if (isDarkMode) {
+                document.body.classList.add('dark-mode');
+                document.querySelector('#themeToggle i').className = 'fas fa-sun';
+            }
+
+            // Load language preference
+            currentLanguage = localStorage.getItem('language') || 'english';
+            updateLanguage();
+
             const saved = localStorage.getItem('currentUser');
             if (saved) {
                 const user = JSON.parse(saved);
@@ -1504,11 +1885,35 @@
                 if (found) loginSuccess(found);
             }
             if (localStorage.getItem('adminLoggedIn') === 'true') isAdmin = true;
+
+            // Initialize wheel
+            initializeWheel();
         };
+
+        function initializeWheel() {
+            const wheel = document.getElementById('wheel');
+            if (!wheel) return;
+            
+            const segmentAngle = 360 / wheelPrizes.length;
+            wheel.innerHTML = wheelPrizes.map((prize, index) => {
+                const angle = index * segmentAngle;
+                return `
+                    <div class="absolute w-1/2 h-1/2 origin-bottom-right" style="transform: rotate(${angle}deg); transform-origin: bottom right;">
+                        <div class="w-full h-full bg-${['red', 'blue', 'green', 'yellow', 'purple', 'pink', 'indigo', 'teal'][index]}-500 transform origin-bottom-left rotate(${segmentAngle}deg) flex items-center justify-center">
+                            <span class="text-white text-xs font-bold transform -rotate-${segmentAngle * 1.5}">${prize}</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
 
         document.addEventListener('click', (e) => {
             if (!e.target.closest('nav')) document.getElementById('menuDropdown').classList.add('hidden');
         });
+
+        // Event listeners for theme and language toggles
+        document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+        document.getElementById('languageToggle').addEventListener('click', toggleLanguage);
     </script>
 </body>
 </html>
