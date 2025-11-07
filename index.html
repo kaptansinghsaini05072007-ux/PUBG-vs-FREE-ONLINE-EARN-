@@ -275,47 +275,6 @@
             border-radius: 20px;
             cursor: pointer;
         }
-        /* New Feature: Notification Bell */
-        .notification-bell {
-            position: relative;
-        }
-        .notification-badge {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background: #FF6B6B;
-            color: white;
-            border-radius: 50%;
-            width: 18px;
-            height: 18px;
-            font-size: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .notification-dropdown {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            width: 300px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            display: none;
-            z-index: 50;
-        }
-        .notification-item {
-            padding: 12px;
-            border-bottom: 1px solid #eee;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .notification-item:hover {
-            background: #f8f9fa;
-        }
-        .notification-item:last-child {
-            border-bottom: none;
-        }
         /* Enhanced Hero Section for Attractiveness */
         .hero-particle {
             position: absolute;
@@ -1266,7 +1225,6 @@
         let users = [];
         let isAdmin = false;
         let currentUPIIndex = 0;
-        let isDarkMode = false;
         let currentLanguage = 'english';
 
         // Updated UPI IDs
@@ -1386,8 +1344,6 @@
                 alert('UPI copied to clipboard!');
             });
         }
-
-        // VIP Membership Functions - Removed
 
         // Spin Wheel Function - Improved with realistic win/loss
         function spinWheel() {
@@ -1742,10 +1698,6 @@
                 totalWinnings: 0,
                 totalWithdrawals: 0,
                 commissionHistory: [],
-                vipLevel: 0,
-                vipActive: false,
-                vipDuration: null,
-                vipExpiry: null,
                 transactionHistory: [],
                 gamesPlayed: 0
             };
@@ -1980,12 +1932,12 @@
             }
         }
 
-        function updateBalance() {
+        async function updateBalance() {
             if (currentUser) {
-                document.getElementById('walletBalance').textContent = `₹${currentUser.balance || 0}`;
-                document.getElementById('profileBalance').textContent = currentUser.balance || 0;
+                document.getElementById('walletBalance').textContent = `₹${(currentUser.balance || 0).toFixed(1)}`;
+                document.getElementById('profileBalance').textContent = (currentUser.balance || 0).toFixed(1);
                 localStorage.setItem('currentUser', JSON.stringify(currentUser));
-                saveUsersToCloud();
+                await saveUsersToCloud();
             }
         }
 
@@ -2033,7 +1985,7 @@
                 document.getElementById('profilePhone').textContent = currentUser.phone;
                 document.getElementById('profileUsername').textContent = currentUser.username;
                 document.getElementById('profileJoinDate').textContent = currentUser.joinDate;
-                document.getElementById('profileBalance').textContent = currentUser.balance || 0;
+                document.getElementById('profileBalance').textContent = (currentUser.balance || 0).toFixed(1);
                 document.getElementById('profileGames').textContent = currentUser.gamesPlayed || 0;
                 document.getElementById('profileWinnings').textContent = currentUser.totalWinnings || 0;
                 document.getElementById('profileWithdrawals').textContent = currentUser.totalWithdrawals || 0;
@@ -2228,9 +2180,13 @@
 
             const saved = localStorage.getItem('currentUser');
             if (saved) {
-                const user = JSON.parse(saved);
-                const found = users.find(u => u.email === user.email);
+                const localUser = JSON.parse(saved);
+                const found = users.find(u => u.email === localUser.email);
                 if (found) {
+                    if (found.balance !== localUser.balance) {
+                        found.balance = localUser.balance;
+                        await saveUsersToCloud();
+                    }
                     loginSuccess(found);
                 }
             }
