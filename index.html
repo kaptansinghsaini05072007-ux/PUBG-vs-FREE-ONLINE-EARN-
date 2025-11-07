@@ -333,31 +333,11 @@
 </head>
 <body class="bg-light font-body text-dark min-h-screen overflow-x-hidden">
 
-    <!-- Theme Toggle -->
-    <div class="fixed top-20 right-4 z-50">
-        <button id="themeToggle" class="bg-primary text-white p-3 rounded-full shadow-lg hover:bg-secondary transition">
-            <i class="fas fa-moon"></i>
-        </button>
-    </div>
-
     <!-- Language Selector -->
     <div class="fixed top-32 right-4 z-50">
         <button id="languageToggle" class="bg-secondary text-white p-3 rounded-full shadow-lg hover:bg-primary transition">
             <i class="fas fa-globe"></i>
         </button>
-    </div>
-
-    <!-- Notification Bell -->
-    <div class="fixed top-20 right-20 z-50">
-        <div class="notification-bell relative">
-            <button id="notificationBtn" class="bg-accent text-dark p-3 rounded-full shadow-lg hover:bg-secondary transition">
-                <i class="fas fa-bell"></i>
-                <span class="notification-badge" id="notificationBadge">0</span>
-            </button>
-            <div id="notificationDropdown" class="notification-dropdown">
-                <!-- Notifications will be populated here -->
-            </div>
-        </div>
     </div>
 
     <!-- Landing Page (Before Login) - Enhanced for Attractiveness -->
@@ -526,18 +506,9 @@
         </section>
     </div>
 
-    <!-- Chat Bubble - New Feature -->
-    <div class="chat-bubble" onclick="toggleChat()">
-        <i class="fas fa-comments text-white text-xl"></i>
-    </div>
-    <div id="chatWindow" class="chat-window">
-        <div class="chat-messages" id="chatMessages">
-            <p class="text-gray-500">Welcome! How can we help you today?</p>
-        </div>
-        <div class="chat-input">
-            <input type="text" id="chatInput" placeholder="Type a message..." onkeypress="handleChatEnter(event)">
-            <button onclick="sendChatMessage()">Send</button>
-        </div>
+    <!-- Customer Support Bubble -->
+    <div class="chat-bubble" onclick="window.open('https://wa.me/12264939021', '_blank')">
+        <i class="fas fa-headset text-white text-xl"></i>
     </div>
 
     <!-- Signup Modal -->
@@ -627,7 +598,6 @@
                                 <a href="#" onclick="showSection('referral')" class="block px-6 py-3 hover:bg-light dark:hover:bg-gray-700 dark:text-white"><i class="fas fa-user-plus mr-2"></i> Refer & Earn</a>
                                 <a href="#" onclick="showSection('spinwheel')" class="block px-6 py-3 hover:bg-light dark:hover:bg-gray-700 dark:text-white"><i class="fas fa-sync-alt mr-2"></i> Spin Wheel</a>
                                 <a href="#" onclick="showSection('leaderboard')" class="block px-6 py-3 hover:bg-light dark:hover:bg-gray-700 dark:text-white"><i class="fas fa-trophy mr-2"></i> Leaderboard</a>
-                                <a href="#" onclick="showSection('chat')" class="block px-6 py-3 hover:bg-light dark:hover:bg-gray-700 dark:text-white"><i class="fas fa-comments mr-2"></i> In-App Chat</a>
                                 <a href="https://wa.me/12264939021" target="_blank" class="block px-6 py-3 hover:bg-light dark:hover:bg-gray-700 dark:text-white"><i class="fas fa-headset mr-2"></i> Customer Support</a>
                                 <a href="https://t.me/+_W2RKTlpHI81MjJl" target="_blank" class="block px-6 py-3 hover:bg-light dark:hover:bg-gray-700 dark:text-white"><i class="fab fa-telegram mr-2"></i> Telegram Community</a>
                                 <a href="#" class="block px-6 py-3 hover:bg-light dark:hover:bg-gray-700 text-red-600 rounded-b-2xl" onclick="logout()"><i class="fas fa-sign-out-alt mr-2"></i> Logout</a>
@@ -688,36 +658,6 @@
             </div>
         </div>
 
-        <!-- VIP Membership Section -->
-        <div class="max-w-7xl mx-auto px-4 py-6">
-            <div class="bg-gradient-to-r from-purple-500 to-pink-500 text-white p-6 rounded-3xl shadow-xl">
-                <h2 class="text-2xl font-heading text-center mb-4">🎮 VIP Membership</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div class="vip-tier vip-tier-1 p-4 rounded-2xl text-center card-hover">
-                        <h3 class="font-bold text-lg mb-2">VIP 1</h3>
-                        <p class="text-sm">3% Extra Bonus on Deposits</p>
-                        <p class="text-sm">Monthly: ₹199</p>
-                        <p class="text-sm">Yearly: ₹2149</p>
-                        <button onclick="upgradeVIP(1)" class="mt-2 bg-white text-purple-600 px-4 py-1 rounded-full text-sm font-bold">Upgrade</button>
-                    </div>
-                    <div class="vip-tier vip-tier-2 p-4 rounded-2xl text-center card-hover">
-                        <h3 class="font-bold text-lg mb-2">VIP 2</h3>
-                        <p class="text-sm">5% Extra Bonus on Deposits</p>
-                        <p class="text-sm">Monthly: ₹499</p>
-                        <p class="text-sm">Yearly: ₹5150</p>
-                        <button onclick="upgradeVIP(2)" class="mt-2 bg-white text-purple-600 px-4 py-1 rounded-full text-sm font-bold">Upgrade</button>
-                    </div>
-                    <div class="vip-tier vip-tier-3 p-4 rounded-2xl text-center card-hover">
-                        <h3 class="font-bold text-lg mb-2">VIP 3</h3>
-                        <p class="text-sm">10% Extra Bonus on Deposits</p>
-                        <p class="text-sm">Monthly: ₹900</p>
-                        <p class="text-sm">Yearly: ₹11050</p>
-                        <button onclick="upgradeVIP(3)" class="mt-2 bg-white text-purple-600 px-4 py-1 rounded-full text-sm font-bold">Upgrade</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <!-- Live Matches Section -->
         <div class="max-w-7xl mx-auto px-4 py-6">
             <h2 class="text-3xl font-heading text-center mb-6 text-primary dark:text-white">🔥 Live Matches</h2>
@@ -753,26 +693,6 @@
         <div id="roomsSection" class="max-w-7xl mx-auto px-4 pb-20">
             <h2 class="text-3xl font-heading text-center mb-8 text-primary dark:text-white">Choose a Room & Play!</h2>
             
-            <!-- Filter System -->
-            <div class="flex flex-wrap gap-4 mb-8 justify-center">
-                <select id="gameTypeFilter" class="p-3 border rounded-xl dark:bg-gray-700 dark:text-white">
-                    <option value="all">All Game Types</option>
-                    <option value="solo">Solo</option>
-                    <option value="duo">Duo</option>
-                    <option value="squad">Squad</option>
-                </select>
-                <select id="entryFeeFilter" class="p-3 border rounded-xl dark:bg-gray-700 dark:text-white">
-                    <option value="all">All Entry Fees</option>
-                    <option value="10">₹10</option>
-                    <option value="20">₹20</option>
-                    <option value="50">₹50</option>
-                    <option value="100">₹100+</option>
-                </select>
-                <button onclick="applyFilters()" class="bg-primary text-white px-6 py-3 rounded-xl font-bold hover:bg-secondary transition">
-                    Apply Filters
-                </button>
-            </div>
-
             <p class="text-center text-gray-600 dark:text-gray-400 mb-8">Win 90% of pot | Only 10% platform fee</p>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <!-- 1v1 & 4v4 Rooms -->
@@ -1082,7 +1002,6 @@
                                 <p><strong>Phone:</strong> <span id="profilePhone">-</span></p>
                                 <p><strong>Username:</strong> <span id="profileUsername">-</span></p>
                                 <p><strong>Joined Date:</strong> <span id="profileJoinDate">-</span></p>
-                                <p><strong>VIP Status:</strong> <span id="profileVIP">None</span> <span id="vipBadge" class="blue-tick ml-2"></span></p>
                             </div>
                         </div>
                         <div class="p-6 bg-light dark:bg-gray-700 rounded-2xl">
@@ -1150,7 +1069,6 @@
                             <p><strong>Referral Code:</strong> <span id="referralCode" class="bg-white bg-opacity-20 px-2 py-1 rounded">Loading...</span></p>
                             <p><strong>Total Referrals:</strong> <span id="totalReferrals">0</span></p>
                             <p><strong>Referral Earnings:</strong> ₹<span id="referralEarnings">0</span></p>
-                            <p><strong>Pending Commission:</strong> ₹<span id="pendingCommission">0</span></p>
                         </div>
                     </div>
                     
@@ -1249,30 +1167,6 @@
             </div>
         </div>
 
-        <!-- In-App Chat Section - New Feature -->
-        <div id="chatSection" class="hidden max-w-4xl mx-auto px-4 py-10">
-            <div class="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-xl">
-                <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-3xl font-heading text-primary dark:text-white">💬 In-App Chat</h2>
-                    <button onclick="showSection('rooms')" class="bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition">
-                        <i class="fas fa-arrow-left mr-2"></i>Back to Dashboard
-                    </button>
-                </div>
-                <div id="inAppChatMessages" class="h-96 overflow-y-auto mb-4 p-4 bg-light dark:bg-gray-700 rounded">
-                    <!-- Chat messages will load here -->
-                    <div class="text-center mb-4">
-                        <a href="https://wa.me/12264939021" target="_blank" class="bg-green-500 text-white px-6 py-3 rounded-full font-bold hover:bg-green-600 transition inline-flex items-center">
-                            <i class="fab fa-whatsapp mr-2"></i>Chat on WhatsApp
-                        </a>
-                    </div>
-                </div>
-                <div class="flex">
-                    <input type="text" id="inAppChatInput" placeholder="Type your message..." class="flex-1 p-2 border rounded-l dark:bg-gray-700 dark:text-white">
-                    <button onclick="sendInAppMessage()" class="bg-primary text-white px-4 rounded-r">Send</button>
-                </div>
-            </div>
-        </div>
-
         <!-- Admin Panel -->
         <div id="adminSection" class="hidden max-w-6xl mx-auto px-4 py-16">
             <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-8">
@@ -1286,42 +1180,6 @@
                     <p class="text-xl font-bold dark:text-white">Total Registered Users: <span id="totalUsers">0</span></p>
                 </div>
                 
-                <!-- Notification Send Section -->
-                <div class="mb-6 bg-light dark:bg-gray-700 p-6 rounded-2xl">
-                    <h3 class="text-xl font-bold mb-4 dark:text-white">📢 Send Notification to All Users</h3>
-                    <div class="grid md:grid-cols-3 gap-4 mb-4">
-                        <input type="text" id="adminNotificationMessage" placeholder="Notification Message" class="p-3 border rounded-xl dark:bg-gray-600 dark:text-white">
-                        <select id="adminNotificationType" class="p-3 border rounded-xl dark:bg-gray-600 dark:text-white">
-                            <option value="info">Info</option>
-                            <option value="success">Success</option>
-                            <option value="warning">Warning</option>
-                        </select>
-                        <button onclick="sendGlobalNotification()" class="bg-blue-500 text-white px-4 py-3 rounded-xl font-bold hover:bg-blue-600 transition">
-                            Send to All
-                        </button>
-                    </div>
-                </div>
-
-                <!-- VIP Activation Section -->
-                <div class="mb-6 bg-light dark:bg-gray-700 p-6 rounded-2xl">
-                    <h3 class="text-xl font-bold mb-4 dark:text-white">Activate VIP Membership</h3>
-                    <div class="grid md:grid-cols-4 gap-4 mb-4">
-                        <input type="email" id="adminUserEmailVIP" placeholder="User Email" class="p-3 border rounded-xl dark:bg-gray-600 dark:text-white">
-                        <select id="adminVIPLevel" class="p-3 border rounded-xl dark:bg-gray-600 dark:text-white">
-                            <option value="1">VIP 1</option>
-                            <option value="2">VIP 2</option>
-                            <option value="3">VIP 3</option>
-                        </select>
-                        <select id="adminVIPDuration" class="p-3 border rounded-xl dark:bg-gray-600 dark:text-white">
-                            <option value="monthly">Monthly</option>
-                            <option value="yearly">Yearly</option>
-                        </select>
-                        <button onclick="activateVIP()" class="bg-purple-500 text-white px-4 py-3 rounded-xl font-bold hover:bg-purple-600 transition">
-                            Activate VIP
-                        </button>
-                    </div>
-                </div>
-
                 <!-- User Stats Update Section -->
                 <div class="mb-6 bg-light dark:bg-gray-700 p-6 rounded-2xl">
                     <h3 class="text-xl font-bold mb-4 dark:text-white">Update User Stats</h3>
@@ -1410,7 +1268,6 @@
         let currentUPIIndex = 0;
         let isDarkMode = false;
         let currentLanguage = 'english';
-        let globalNotifications = []; // Global notifications array
 
         // Updated UPI IDs
         const upiIds = [
@@ -1418,8 +1275,8 @@
             "rajendrafreefire@fam"
         ];
 
-        // Spin Wheel Prizes - More realistic win/loss ratio
-        const wheelPrizes = ['₹0', '₹1', '₹3', '₹0', '₹5', '₹0', '₹7', '₹8', '₹0', '₹10'];
+        // Spin Wheel Prizes - 80% loss
+        const wheelPrizes = ['₹0', '₹0', '₹0', '₹0', '₹0', '₹0', '₹0', '₹0', '₹1', '₹5'];
 
         // Live Stats Data - Enhanced with More Transactions
         const transactions = [
@@ -1503,62 +1360,6 @@
             }
         }
 
-        // Enhanced Notification System - Dynamic from Cloud
-        function initializeNotifications() {
-            const userNotifications = currentUser ? (currentUser.notifications || []) : [];
-            const allNotifications = [...globalNotifications, ...userNotifications].slice(-10).reverse(); // Last 10, newest first
-            const dropdown = document.getElementById('notificationDropdown');
-            dropdown.innerHTML = allNotifications.map(notif => 
-                `<div class="notification-item ${notif.type}">
-                    <i class="fas fa-${notif.type === 'success' ? 'check' : notif.type === 'warning' ? 'exclamation' : 'info'}-circle mr-2"></i>
-                    ${notif.message}
-                    <p class="text-xs text-gray-500 mt-1">${notif.date}</p>
-                </div>`
-            ).join('');
-
-            document.getElementById('notificationBadge').textContent = allNotifications.length;
-        }
-
-        function toggleNotifications() {
-            document.getElementById('notificationDropdown').style.display = 
-                document.getElementById('notificationDropdown').style.display === 'block' ? 'none' : 'block';
-        }
-
-        // Admin: Send Global Notification
-        function sendGlobalNotification() {
-            const message = document.getElementById('adminNotificationMessage').value.trim();
-            const type = document.getElementById('adminNotificationType').value;
-            if (!message) return alert('Enter message');
-
-            const notif = {
-                id: Date.now(),
-                message,
-                type,
-                date: new Date().toLocaleString(),
-                global: true
-            };
-
-            globalNotifications.unshift(notif);
-            users.forEach(user => {
-                if (!user.notifications) user.notifications = [];
-                user.notifications.unshift(notif);
-            });
-
-            saveUsersToCloud();
-            alert('Global notification sent!');
-            document.getElementById('adminNotificationMessage').value = '';
-            if (currentUser) initializeNotifications();
-        }
-
-        // Theme Toggle
-        function toggleTheme() {
-            isDarkMode = !isDarkMode;
-            document.body.classList.toggle('dark-mode', isDarkMode);
-            const themeIcon = document.querySelector('#themeToggle i');
-            themeIcon.className = isDarkMode ? 'fas fa-sun' : 'fas fa-moon';
-            localStorage.setItem('darkMode', isDarkMode);
-        }
-
         // Language Toggle
         function toggleLanguage() {
             currentLanguage = currentLanguage === 'english' ? 'hindi' : 'english';
@@ -1586,108 +1387,7 @@
             });
         }
 
-        // New Feature: Chat Functions
-        let chatVisible = false;
-        function toggleChat() {
-            chatVisible = !chatVisible;
-            document.getElementById('chatWindow').style.display = chatVisible ? 'flex' : 'none';
-        }
-
-        function handleChatEnter(event) {
-            if (event.key === 'Enter') sendChatMessage();
-        }
-
-        function sendChatMessage() {
-            const input = document.getElementById('chatInput');
-            const message = input.value.trim();
-            if (!message) return;
-            const messages = document.getElementById('chatMessages');
-            messages.innerHTML += `<p class="text-right mb-2"><strong>You:</strong> ${message}</p>`;
-            input.value = '';
-            // Simulate bot response
-            setTimeout(() => {
-                messages.innerHTML += `<p class="text-left mb-2"><strong>Bot:</strong> Thanks for your message! We'll get back soon.</p>`;
-                messages.scrollTop = messages.scrollHeight;
-            }, 1000);
-            messages.scrollTop = messages.scrollHeight;
-        }
-
-        function sendInAppMessage() {
-            const input = document.getElementById('inAppChatInput');
-            const message = input.value.trim();
-            if (!message) return;
-            const messages = document.getElementById('inAppChatMessages');
-            messages.innerHTML += `<p class="text-right mb-2 bg-primary text-white p-2 rounded"><strong>You:</strong> ${message}</p>`;
-            input.value = '';
-            // Simulate response
-            setTimeout(() => {
-                messages.innerHTML += `<p class="text-left mb-2 bg-gray-200 p-2 rounded"><strong>Support:</strong> Message received!</p>`;
-                messages.scrollTop = messages.scrollHeight;
-            }, 1000);
-            messages.scrollTop = messages.scrollHeight;
-        }
-
-        // VIP Membership Functions
-        function upgradeVIP(level) {
-            if (!currentUser) {
-                alert('Please login first!');
-                return;
-            }
-            
-            let price = 0;
-            let duration = 'monthly';
-            
-            if (level === 1) {
-                price = 199;
-            } else if (level === 2) {
-                price = 499;
-            } else if (level === 3) {
-                price = 900;
-            }
-            
-            const msg = `🎮 VIP UPGRADE REQUEST 🎮
-👤 User: ${currentUser.username}
-📧 Email: ${currentUser.email}
-📱 Phone: ${currentUser.phone}
-💰 VIP Level: ${level}
-💵 Price: ₹${price}
-⏰ Duration: ${duration}
-⏰ Timestamp: ${new Date().toLocaleString()}
-🔗 Platform: Free Fire & PUBG Tournament`;
-
-            window.open(`https://wa.me/12264939021?text=${encodeURIComponent(msg)}`, '_blank');
-        }
-
-        // Admin VIP Activation
-        function activateVIP() {
-            const email = document.getElementById('adminUserEmailVIP').value.trim().toLowerCase();
-            const level = document.getElementById('adminVIPLevel').value;
-            const duration = document.getElementById('adminVIPDuration').value;
-            
-            if (!email) return alert('Enter user email');
-
-            const user = users.find(u => u.email.toLowerCase() === email);
-            if (!user) return alert('User not found!');
-
-            user.vipLevel = parseInt(level);
-            user.vipDuration = duration;
-            user.vipActive = true;
-            
-            // Set VIP expiry date
-            const expiryDate = new Date();
-            if (duration === 'monthly') {
-                expiryDate.setMonth(expiryDate.getMonth() + 1);
-            } else {
-                expiryDate.setFullYear(expiryDate.getFullYear() + 1);
-            }
-            user.vipExpiry = expiryDate.toISOString();
-
-            saveUsersToCloud();
-            alert(`VIP ${level} activated for ${user.username} (${duration})`);
-            
-            // Clear fields
-            document.getElementById('adminUserEmailVIP').value = '';
-        }
+        // VIP Membership Functions - Removed
 
         // Spin Wheel Function - Improved with realistic win/loss
         function spinWheel() {
@@ -1768,20 +1468,6 @@
             saveUsersToCloud();
         }
 
-        // Filter System
-        function applyFilters() {
-            const gameType = document.getElementById('gameTypeFilter').value;
-            const entryFee = document.getElementById('entryFeeFilter').value;
-            
-            // Implement filter logic here - Enhanced with actual filtering
-            const rooms = document.querySelectorAll('.room-card');
-            rooms.forEach(room => {
-                room.style.display = 'block'; // Default show all
-                // Add logic to hide based on filters
-            });
-            alert(`Filters applied: Game Type - ${gameType}, Entry Fee - ${entryFee}`);
-        }
-
         // Leaderboard Functions
         function loadLeaderboard() {
             const topPlayers = users.sort((a, b) => (b.totalWinnings || 0) - (a.totalWinnings || 0)).slice(0, 5);
@@ -1833,20 +1519,31 @@
             document.getElementById('referralCode').textContent = currentUser.referralCode;
             document.getElementById('referralCodeDisplay').textContent = currentUser.referralCode;
             
-            // Calculate referral stats
+            // Referral stats
             const referrals = users.filter(u => u.referredBy === currentUser.referralCode);
-            const referralEarnings = referrals.reduce((sum, ref) => sum + (ref.referralBonus || 0), 0);
-            const pendingCommission = referrals.reduce((sum, ref) => sum + (ref.pendingCommission || 0), 0);
+            const referralEarnings = currentUser.referralEarnings || 0;
 
             document.getElementById('totalReferrals').textContent = referrals.length;
             document.getElementById('referralEarnings').textContent = referralEarnings;
-            document.getElementById('pendingCommission').textContent = pendingCommission;
+
+            // Group commissions
+            let referralTotals = {};
+            let commissionByUser = {};
+
+            (currentUser.commissionHistory || []).forEach(comm => {
+                if (!referralTotals[comm.from]) referralTotals[comm.from] = 0;
+                referralTotals[comm.from] += comm.amount;
+
+                if (!commissionByUser[comm.from]) commissionByUser[comm.from] = [];
+                commissionByUser[comm.from].push(comm);
+            });
 
             // Update referral list with commission details
             const referralList = document.getElementById('referralList');
             if (referrals.length > 0) {
                 referralList.innerHTML = referrals.map(ref => {
-                    const commissionHistory = ref.commissionHistory || [];
+                    const totalCommission = referralTotals[ref.username] || 0;
+                    const userHistory = commissionByUser[ref.username] || [];
                     return `
                         <div class="p-4 bg-white dark:bg-gray-600 rounded-lg border">
                             <div class="flex justify-between items-center mb-2">
@@ -1855,14 +1552,14 @@
                                     <p class="text-sm text-gray-600 dark:text-gray-400">Joined: ${ref.joinDate}</p>
                                 </div>
                                 <div class="text-right">
-                                    <p class="text-green-600 font-bold">+₹${ref.referralBonus || 0}</p>
+                                    <p class="text-green-600 font-bold">+₹${totalCommission}</p>
                                     <p class="text-xs text-gray-600 dark:text-gray-400">Total Commission</p>
                                 </div>
                             </div>
-                            ${commissionHistory.length > 0 ? `
+                            ${userHistory.length > 0 ? `
                                 <div class="mt-2 pt-2 border-t border-gray-300 dark:border-gray-500">
                                     <p class="text-sm font-bold text-primary dark:text-white">Commission History:</p>
-                                    ${commissionHistory.map(comm => `
+                                    ${userHistory.map(comm => `
                                         <p class="text-xs text-gray-600 dark:text-gray-400">₹${comm.amount} from ${comm.type} - ${comm.date}</p>
                                     `).join('')}
                                 </div>
@@ -1896,6 +1593,7 @@
             if (currentUser.balance < amount) { alert('Insufficient balance!'); showSection('deposit'); return; }
             if (confirm(`Join ₹${amount} ${mode} room?`)) {
                 currentUser.balance -= amount;
+                currentUser.gamesPlayed = (currentUser.gamesPlayed || 0) + 1;
                 const win = amount * 1.8;
                 
                 const msg = `🎮 ROOM JOIN REQUEST 🎮
@@ -1910,6 +1608,7 @@
 
                 alert(`Joined ${mode} room! Win up to ₹${win}`);
                 await updateBalance();
+                await saveUsersToCloud();
                 window.open(`https://wa.me/12264939021?text=${encodeURIComponent(msg)}`, '_blank');
             }
         }
@@ -1920,6 +1619,7 @@
             if (currentUser.balance < ticket) { alert('Insufficient balance!'); showSection('deposit'); return; }
             if (confirm(`Join Travel ${travel} Ludo room? Ticket: ₹${ticket}, Win: ₹${win}`)) {
                 currentUser.balance -= ticket;
+                currentUser.gamesPlayed = (currentUser.gamesPlayed || 0) + 1;
                 
                 const msg = `🎲 LUDO ROOM REQUEST 🎲
 👤 User: ${currentUser.username}
@@ -1933,6 +1633,7 @@
 
                 alert(`Joined Travel ${travel} Ludo room! Win up to ₹${win}`);
                 await updateBalance();
+                await saveUsersToCloud();
                 window.open(`https://wa.me/12264939021?text=${encodeURIComponent(msg)}`, '_blank');
             }
         }
@@ -1942,6 +1643,7 @@
             if (currentUser.balance < amount) { alert('Insufficient balance!'); showSection('deposit'); return; }
             if (confirm(`Join Erangel ₹${amount} room? (₹${amount/2} per kill)`)) {
                 currentUser.balance -= amount;
+                currentUser.gamesPlayed = (currentUser.gamesPlayed || 0) + 1;
                 
                 const msg = `🎮 ERANGEL ROOM REQUEST 🎮
 👤 User: ${currentUser.username}
@@ -1955,6 +1657,7 @@
 
                 alert(`Joined Erangel! ₹${amount/2} per kill.`);
                 await updateBalance();
+                await saveUsersToCloud();
                 window.open(`https://wa.me/12264939021?text=${encodeURIComponent(msg)}`, '_blank');
             }
         }
@@ -2039,7 +1742,6 @@
                 totalWinnings: 0,
                 totalWithdrawals: 0,
                 commissionHistory: [],
-                notifications: [],
                 vipLevel: 0,
                 vipActive: false,
                 vipDuration: null,
@@ -2053,29 +1755,7 @@
             if (referredBy) {
                 const referrer = users.find(u => u.referralCode === referredBy);
                 if (referrer) {
-                    referrer.referralEarnings = (referrer.referralEarnings || 0) + 5;
                     referrer.totalReferrals = (referrer.totalReferrals || 0) + 1;
-                    referrer.balance += 5;
-                    
-                    // Add to commission history
-                    if (!referrer.commissionHistory) referrer.commissionHistory = [];
-                    referrer.commissionHistory.push({
-                        amount: 5,
-                        date: new Date().toLocaleString(),
-                        from: user.username,
-                        type: 'Signup Bonus'
-                    });
-                    
-                    // Update referrer's transaction history
-                    if (!referrer.transactionHistory) referrer.transactionHistory = [];
-                    referrer.transactionHistory.unshift({
-                        type: 'Referral Signup Bonus',
-                        amount: 5,
-                        date: new Date().toLocaleString(),
-                        from: user.username
-                    });
-                    
-                    alert(`🎉 You received ₹5 referral bonus!`);
                 }
             }
             
@@ -2247,28 +1927,6 @@
             document.getElementById('joinDate').textContent = user.joinDate;
             updateBalance(); // Ensure balance updates on login/refresh
             updateLastSeen();
-            
-            // Update VIP status display
-            updateVIPDisplay();
-            // Load notifications
-            initializeNotifications();
-        }
-
-        // Update VIP status display
-        function updateVIPDisplay() {
-            if (currentUser && currentUser.vipActive) {
-                document.getElementById('profileVIP').textContent = `VIP ${currentUser.vipLevel}`;
-                document.getElementById('vipBadge').innerHTML = '<i class="fas fa-check-circle"></i>';
-                
-                // Add VIP class to user info card
-                const userCard = document.querySelector('.bg-gradient-to-r.from-primary.to-secondary');
-                if (userCard) {
-                    userCard.classList.add('vip-active');
-                }
-            } else {
-                document.getElementById('profileVIP').textContent = 'None';
-                document.getElementById('vipBadge').innerHTML = '';
-            }
         }
 
         // Initialize cloud database
@@ -2284,17 +1942,14 @@
                 if (response.ok) {
                     const data = await response.json();
                     users = data.record.users || [];
-                    globalNotifications = data.record.globalNotifications || [];
                     console.log('Cloud data loaded successfully:', users.length + ' users');
                 } else {
                     console.log('Cloud load failed, using localStorage');
                     users = JSON.parse(localStorage.getItem('ludoUsers') || '[]');
-                    globalNotifications = JSON.parse(localStorage.getItem('globalNotifications') || '[]');
                 }
             } catch (error) {
                 console.log('Cloud database not available, using localStorage');
                 users = JSON.parse(localStorage.getItem('ludoUsers') || '[]');
-                globalNotifications = JSON.parse(localStorage.getItem('globalNotifications') || '[]');
             }
         }
 
@@ -2308,8 +1963,7 @@
                         'X-Master-Key': JSONBIN_API_KEY
                     },
                     body: JSON.stringify({ 
-                        users: users,
-                        globalNotifications: globalNotifications 
+                        users: users
                     })
                 });
                 
@@ -2322,7 +1976,6 @@
             } catch (error) {
                 console.log('Cloud save failed, using localStorage');
                 localStorage.setItem('ludoUsers', JSON.stringify(users));
-                localStorage.setItem('globalNotifications', JSON.stringify(globalNotifications));
                 return false;
             }
         }
@@ -2365,10 +2018,6 @@
                 loadLeaderboard();
             }
             if (section === 'withdraw') toggleWithdrawFields();
-            if (section === 'chat') {
-                // Load in-app chat
-                document.getElementById('inAppChatMessages').innerHTML = '<p class="text-gray-500">Start chatting with support!</p>';
-            }
             if (section === 'deposit') {
                 // Set initial UPI
                 document.getElementById('currentUPI').textContent = upiIds[0];
@@ -2388,9 +2037,6 @@
                 document.getElementById('profileGames').textContent = currentUser.gamesPlayed || 0;
                 document.getElementById('profileWinnings').textContent = currentUser.totalWinnings || 0;
                 document.getElementById('profileWithdrawals').textContent = currentUser.totalWithdrawals || 0;
-                
-                // Update VIP status
-                updateVIPDisplay();
             }
         }
 
@@ -2455,7 +2101,6 @@
             }
             
             users.forEach(user => {
-                const vipStatus = user.vipActive ? `VIP ${user.vipLevel} (${user.vipDuration})` : 'None';
                 const div = document.createElement('div');
                 div.className = 'p-4 border rounded-xl bg-gray-50 dark:bg-gray-700';
                 div.innerHTML = `
@@ -2463,7 +2108,7 @@
                     <p class="dark:text-gray-300">Phone: ${user.phone} | Balance: ₹${user.balance}</p>
                     <p class="text-sm text-gray-600 dark:text-gray-400">Winnings: ₹${user.totalWinnings || 0} | Withdrawals: ₹${user.totalWithdrawals || 0}</p>
                     <p class="text-sm text-gray-600 dark:text-gray-400">Referrals: ${user.totalReferrals || 0} | Ref Earnings: ₹${user.referralEarnings || 0}</p>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">VIP: ${vipStatus} | Joined: ${user.joinDate}</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Joined: ${user.joinDate}</p>
                     <div class="flex gap-2 mt-2">
                         <input type="number" placeholder="Amount" class="p-2 border rounded w-24 dark:bg-gray-600 dark:text-white" min="1">
                         <button onclick="addFund('${user.email}', this.previousElementSibling.value)" class="bg-green-500 text-white px-3 py-1 rounded text-sm">Add</button>
@@ -2502,7 +2147,7 @@
             // Add transaction to user history
             if (!user.transactionHistory) user.transactionHistory = [];
             user.transactionHistory.unshift({
-                type: 'Admin Added Funds',
+                type: 'Bonus Received Successfully',
                 amount: amt,
                 date: new Date().toLocaleString()
             });
@@ -2577,13 +2222,6 @@
             createParticles(); // New: Particles
             checkReferral(); // Check for referral codes
             
-            // Load theme preference
-            isDarkMode = localStorage.getItem('darkMode') === 'true';
-            if (isDarkMode) {
-                document.body.classList.add('dark-mode');
-                document.querySelector('#themeToggle i').className = 'fas fa-sun';
-            }
-
             // Load language preference
             currentLanguage = localStorage.getItem('language') || 'english';
             updateLanguage();
@@ -2602,8 +2240,6 @@
             initializeWheel();
 
             // Event listeners
-            document.getElementById('notificationBtn').addEventListener('click', toggleNotifications);
-            document.getElementById('themeToggle').addEventListener('click', toggleTheme);
             document.getElementById('languageToggle').addEventListener('click', toggleLanguage);
         };
 
@@ -2626,9 +2262,7 @@
 
         document.addEventListener('click', (e) => {
             if (!e.target.closest('nav')) document.getElementById('menuDropdown').classList.add('hidden');
-            if (!e.target.closest('.notification-bell')) document.getElementById('notificationDropdown').style.display = 'none';
         });
     </script>
 </body>
 </html>
-```
